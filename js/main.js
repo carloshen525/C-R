@@ -121,5 +121,338 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // 6. Assistente Robô Espiando na Borda da Tela (Edge-Clinging Peeking Assistant)
+  const robotAssistant = document.getElementById('robotAssistant');
+  const robotTrigger = document.getElementById('robotTrigger');
+  const robotBubble = document.getElementById('robotBubble');
+  const robotBubbleClose = document.getElementById('robotBubbleClose');
+  const robotDismissBtn = document.getElementById('robotDismissBtn');
+  const robotHead = document.getElementById('robot-head-group');
+  const robotPupils = document.getElementById('robot-pupils-wrapper');
+
+  if (robotAssistant && robotTrigger && robotBubble) {
+    // 6.1 Alternância do balão de fala
+    function toggleBubble(open) {
+      const willOpen = typeof open === 'boolean' ? open : !robotBubble.classList.contains('active');
+      robotBubble.classList.toggle('active', willOpen);
+      robotTrigger.setAttribute('aria-expanded', willOpen);
+    }
+
+    if (robotBubbleClose) {
+      robotBubbleClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleBubble(false);
+      });
+    }
+
+    // Fechar ao clicar fora do robô
+    document.addEventListener('click', (e) => {
+      if (!robotAssistant.contains(e.target) && robotBubble.classList.contains('active')) {
+        toggleBubble(false);
+      }
+    });
+
+    // Fechar com tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && robotBubble.classList.contains('active')) {
+        toggleBubble(false);
+      }
+    });
+
+    // Fechar balão ao clicar em um dos botões de ação do WhatsApp
+    const actionLinks = robotBubble.querySelectorAll('.robot-btn');
+    actionLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        toggleBubble(false);
+      });
+    });
+
+    // Minimizar / dispensar assistente
+    if (robotDismissBtn) {
+      robotDismissBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleBubble(false);
+        robotAssistant.classList.add('minimized');
+        try {
+          sessionStorage.setItem('rc_robot_dismissed', '1');
+        } catch (err) {}
+      });
+    }
+
+    try {
+      if (sessionStorage.getItem('rc_robot_dismissed') === '1') {
+        robotAssistant.classList.add('minimized');
+      }
+    } catch (err) {}
+
+    // 6.2 Sistema de Arrasto Livre e Fixação Magnética na Borda (Drag & Snap-to-Edge)
+    let isDragging = false;
+    let hasDragged = false;
+    let pointerStartX = 0;
+    let pointerStartY = 0;
+    let robotStartLeft = 0;
+    let robotStartTop = 0;
+    let userPinnedY = null;
+
+    robotTrigger.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0 && e.pointerType === 'mouse') return;
+
+      pointerStartX = e.clientX;
+      pointerStartY = e.clientY;
+      hasDragged = false;
+      isDragging = false;
+
+      const rect = robotAssistant.getBoundingClientRect();
+      robotStartLeft = rect.left;
+      robotStartTop = rect.top;
+
+      try {
+        robotTrigger.setPointerCapture(e.pointerId);
+      } catch (err) {}
+    });
+
+    robotTrigger.addEventListener('pointermove', (e) => {
+      if (!robotTrigger.hasPointerCapture(e.pointerId)) return;
+
+      const deltaX = e.clientX - pointerStartX;
+      const deltaY = e.clientY - pointerStartY;
+
+      // Distância de 6px para distinguir clique de arrasto
+      if (!hasDragged && Math.hypot(deltaX, deltaY) > 6) {
+        hasDragged = true;
+        isDragging = true;
+        robotAssistant.classList.add('is-dragging');
+        toggleBubble(false);
+      }
+
+      if (isDragging) {
+        const newLeft = robotStartLeft + deltaX;
+        const newTop = robotStartTop + deltaY;
+
+        robotAssistant.style.transition = 'none';
+        robotAssistant.style.left = `${newLeft}px`;
+        robotAssistant.style.top = `${newTop}px`;
+        robotAssistant.style.right = 'auto';
+        robotAssistant.style.transform = 'none';
+      }
+    });
+
+    function finishDrag(e) {
+      if (!robotTrigger.hasPointerCapture(e.pointerId)) return;
+
+      try {
+        robotTrigger.releasePointerCapture(e.pointerId);
+      } catch (err) {}
+
+      if (isDragging) {
+        isDragging = false;
+        robotAssistant.classList.remove('is-dragging');
+
+        // Define a lateral mais próxima
+        const screenMidX = window.innerWidth / 2;
+        const snapToLeft = e.clientX < screenMidX;
+
+        // Mantém a altura exata onde o usuário soltou o robô (com margens seguras)
+        const minTop = 60;
+        const maxTop = window.innerHeight - 80;
+        userPinnedY = Math.max(minTop, Math.min(maxTop, e.clientY));
+
+        // Transição magnética suave para a borda lateral
+        robotAssistant.style.transition = 'left 0.45s cubic-bezier(0.16, 1, 0.3, 1), right 0.45s cubic-bezier(0.16, 1, 0.3, 1), top 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+        robotAssistant.style.top = `${userPinnedY}px`;
+
+        if (snapToLeft) {
+          currentSide = 'left';
+          robotAssistant.classList.remove('peeking-right');
+          robotAssistant.classList.add('peeking-left');
+          robotAssistant.style.left = '0px';
+          robotAssistant.style.right = 'auto';
+          robotAssistant.style.transform = 'translateY(-50%) translateX(0)';
+        } else {
+          currentSide = 'right';
+          robotAssistant.classList.remove('peeking-left');
+          robotAssistant.classList.add('peeking-right');
+          robotAssistant.style.right = '0px';
+          robotAssistant.style.left = 'auto';
+          robotAssistant.style.transform = 'translateY(-50%) translateX(0)';
+        }
+
+        if (robotPupils) robotPupils.style.transform = 'translate(0px, 0px)';
+        if (robotHead) robotHead.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      }
+    }
+
+    robotTrigger.addEventListener('pointerup', finishDrag);
+    robotTrigger.addEventListener('pointercancel', finishDrag);
+
+    // Clique abre o diálogo somente se o robô NÃO foi arrastado
+    robotTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (hasDragged) {
+        hasDragged = false;
+        return;
+      }
+      toggleBubble();
+    });
+
+    // 6.3 Alternância suave entre seções mantendo a altura fixada pelo usuário
+    const sectionSideConfig = [
+      { id: 'inicio', side: 'right' },
+      { id: 'sobre', side: 'right' },
+      { id: 'servicos', side: 'left' },
+      { id: 'projetos', side: 'left' },
+      { id: 'como-trabalhamos', side: 'left' },
+      { id: 'faq', side: 'right' }
+    ];
+
+    let currentSide = 'right';
+    let isSideTransitioning = false;
+
+    function setRobotSide(newSide) {
+      if (currentSide === newSide || isSideTransitioning || isDragging) return;
+      isSideTransitioning = true;
+      currentSide = newSide;
+
+      toggleBubble(false);
+
+      robotAssistant.classList.add('is-hiding');
+
+      setTimeout(() => {
+        if (newSide === 'left') {
+          robotAssistant.classList.remove('peeking-right');
+          robotAssistant.classList.add('peeking-left');
+          robotAssistant.style.left = '0px';
+          robotAssistant.style.right = 'auto';
+        } else {
+          robotAssistant.classList.remove('peeking-left');
+          robotAssistant.classList.add('peeking-right');
+          robotAssistant.style.right = '0px';
+          robotAssistant.style.left = 'auto';
+        }
+
+        if (userPinnedY !== null) {
+          robotAssistant.style.top = `${userPinnedY}px`;
+        }
+
+        if (robotPupils) robotPupils.style.transform = 'translate(0px, 0px)';
+        if (robotHead) robotHead.style.transform = 'rotateY(0deg) rotateX(0deg)';
+
+        setTimeout(() => {
+          robotAssistant.classList.remove('is-hiding');
+          isSideTransitioning = false;
+        }, 60);
+      }, 360);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const targetId = entry.target.id;
+            const match = sectionSideConfig.find(item => item.id === targetId);
+            if (match) {
+              setRobotSide(match.side);
+            }
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '-25% 0px -40% 0px',
+        threshold: 0.2
+      });
+
+      sectionSideConfig.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (el) observer.observe(el);
+      });
+    }
+
+    // 6.3 Sistema de Rastreamento Visual dos Olhos e Cabeça (Desktop & Mobile)
+    let lookRafId = null;
+    let targetX = 0;
+    let targetY = 0;
+
+    function updateRobotGaze(screenX, screenY) {
+      if (!robotPupils || !robotHead || isSideTransitioning) return;
+
+      const rect = robotAssistant.getBoundingClientRect();
+      const isLeft = currentSide === 'left';
+      const visorCenterX = isLeft ? rect.left + rect.width * 0.396 : rect.right - rect.width * 0.396;
+      const visorCenterY = rect.top + rect.height * 0.35;
+
+      const deltaX = screenX - visorCenterX;
+      const deltaY = screenY - visorCenterY;
+
+      // Inverte o vetor horizontal caso o SVG esteja espelhado via scaleX(-1) no lado esquerdo
+      const orientedDeltaX = isLeft ? -deltaX : deltaX;
+
+      const angle = Math.atan2(deltaY, orientedDeltaX);
+      const distance = Math.min(Math.hypot(orientedDeltaX, deltaY), 500) / 500;
+
+      // Limites de deslocamento das pupilas no visor (em pixels)
+      const maxPupilX = 4.8;
+      const maxPupilY = 3.6;
+      const pupilX = Math.cos(angle) * distance * maxPupilX;
+      const pupilY = Math.sin(angle) * distance * maxPupilY;
+
+      // Rotação sutil da cabeça (em graus)
+      const headRotY = Math.max(-9, Math.min(9, (orientedDeltaX / window.innerWidth) * 16));
+      const headRotX = Math.max(-6, Math.min(6, (deltaY / window.innerHeight) * 12));
+
+      robotPupils.style.transform = `translate(${pupilX.toFixed(2)}px, ${pupilY.toFixed(2)}px)`;
+      robotHead.style.transform = `perspective(240px) rotateY(${headRotY.toFixed(2)}deg) rotateX(${(-headRotX).toFixed(2)}deg)`;
+    }
+
+    // Desktop: Rastreamento contínuo do mouse
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        if (!lookRafId) {
+          lookRafId = requestAnimationFrame(() => {
+            lookRafId = null;
+            updateRobotGaze(targetX, targetY);
+          });
+        }
+      }, { passive: true });
+    }
+
+    // Mobile: Rastreamento de toque (touch) e rolagem (scroll)
+    let touchTimeout = null;
+    function handleTouch(e) {
+      if (!e.touches || e.touches.length === 0) return;
+      const touch = e.touches[0];
+      targetX = touch.clientX;
+      targetY = touch.clientY;
+
+      if (!lookRafId) {
+        lookRafId = requestAnimationFrame(() => {
+          lookRafId = null;
+          updateRobotGaze(targetX, targetY);
+        });
+      }
+
+      if (touchTimeout) clearTimeout(touchTimeout);
+      touchTimeout = setTimeout(() => {
+        // Volta a olhar suavemente para o centro da tela após soltar o dedo
+        updateRobotGaze(window.innerWidth / 2, window.innerHeight * 0.45);
+      }, 1200);
+    }
+
+    window.addEventListener('touchstart', handleTouch, { passive: true });
+    window.addEventListener('touchmove', handleTouch, { passive: true });
+
+    // Durante scroll, robô orienta o olhar para o centro do conteúdo
+    let scrollLookTimeout = null;
+    window.addEventListener('scroll', () => {
+      if (!scrollLookTimeout) {
+        scrollLookTimeout = setTimeout(() => {
+          scrollLookTimeout = null;
+          updateRobotGaze(window.innerWidth / 2, window.innerHeight * 0.5);
+        }, 100);
+      }
+    }, { passive: true });
+  }
 });
 

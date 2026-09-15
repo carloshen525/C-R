@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 190" width="100%" height="100%" fill="none">
+  <defs>
+    <style>
+      @keyframes botBlink {
+        0%, 92%, 100% {
+          transform: scaleY(1);
+        }
+        95% {
+          transform: scaleY(0.12);
+        }
+      }
+      #robot-eyes {
+        transform-origin: 80px 58px;
+        animation: botBlink 4.2s ease-in-out infinite;
+      }
+    </style>
+    <!-- Gradientes do Robô -->
+    <linearGradient id="botHeadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#222A36" />
+      <stop offset="50%" stop-color="#141922" />
+      <stop offset="100%" stop-color="#0B0E14" />
+    </linearGradient>
+
+    <linearGradient id="botVisorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#090C10" />
+      <stop offset="100%" stop-color="#040608" />
+    </linearGradient>
+
+    <linearGradient id="botBlueLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38A0FF" />
+      <stop offset="100%" stop-color="#0A84FF" />
+    </linearGradient>
+
+    <linearGradient id="botThrusterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0A84FF" stop-opacity="0.8" />
+      <stop offset="60%" stop-color="#0A84FF" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0A84FF" stop-opacity="0" />
+    </linearGradient>
+
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#0A84FF" flood-opacity="0.85" />
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#0A84FF" flood-opacity="0.45" />
+    </filter>
+    <filter id="robotShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <g id="robot-figure" filter="url(#robotShadow)">
+    <!-- Halo / Propulsor de Levitação Magnética (Embaixo) -->
+    <ellipse cx="80" cy="168" rx="28" ry="7" fill="url(#botThrusterGrad)" />
+    <ellipse cx="80" cy="164" rx="18" ry="4" fill="#0A84FF" fill-opacity="0.4" filter="url(#neonGlow)" />
+    <ellipse cx="80" cy="162" rx="10" ry="2" fill="#FFFFFF" fill-opacity="0.8" />
+
+    <!-- Corpo / Tronco do Robô -->
+    <path d="M50 102 C50 94 62 90 80 90 C98 90 110 94 110 102 L106 142 C106 150 94 156 80 156 C66 156 54 150 54 142 Z" fill="url(#botHeadGrad)" stroke="#2D3748" stroke-width="1.8" />
+    
+    <!-- Anel de Luz no Tronco -->
+    <path d="M56 120 C64 124 96 124 104 120" stroke="#0A84FF" stroke-width="2" stroke-linecap="round" filter="url(#neonGlow)" />
+    
+    <!-- Monograma RC / Core de Energia no Peito -->
+    <circle cx="80" cy="136" r="8" fill="#10151E" stroke="#0A84FF" stroke-width="1.5" />
+    <circle cx="80" cy="136" r="4" fill="#0A84FF" filter="url(#neonGlow)" />
+
+    <!-- Braço Esquerdo (Flutuante Articulado) -->
+    <g class="bot-arm-left">
+      <path d="M42 102 C34 110 32 126 38 136 C40 139 44 138 43 134 C39 126 41 114 47 106 Z" fill="url(#botHeadGrad)" stroke="#2C3646" stroke-width="1.5" />
+      <circle cx="40" cy="136" r="3.5" fill="#0A84FF" filter="url(#neonGlow)" />
+    </g>
+
+    <!-- Braço Direito (Flutuante Articulado) -->
+    <g class="bot-arm-right">
+      <path d="M118 102 C126 110 128 126 122 136 C120 139 116 138 117 134 C121 126 119 114 113 106 Z" fill="url(#botHeadGrad)" stroke="#2C3646" stroke-width="1.5" />
+      <circle cx="120" cy="136" r="3.5" fill="#0A84FF" filter="url(#neonGlow)" />
+    </g>
+
+    <!-- Pescoço / Articulação Esférica -->
+    <ellipse cx="80" cy="90" rx="14" ry="6" fill="#1A222E" stroke="#0A84FF" stroke-width="1.2" />
+
+    <!-- Cabeça do Robô -->
+    <g id="robot-head">
+      <!-- Antena Superior Inteligente com Sinal de Dados -->
+      <line x1="80" y1="26" x2="80" y2="12" stroke="#2D3748" stroke-width="2" stroke-linecap="round" />
+      <circle cx="80" cy="10" r="4" fill="#0A84FF" filter="url(#neonGlow)" />
+      <!-- Pulsos da antena -->
+      <path d="M72 8 C72 4 88 4 88 8" stroke="#0A84FF" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.6" />
+
+      <!-- Casca da Cabeça (Design Curvo Premium) -->
+      <rect x="36" y="24" width="88" height="68" rx="30" fill="url(#botHeadGrad)" stroke="#323E50" stroke-width="2" />
+      
+      <!-- Fone / Auriculares Laterais -->
+      <rect x="30" y="44" width="8" height="28" rx="4" fill="#1A222F" stroke="#0A84FF" stroke-width="1.5" />
+      <circle cx="34" cy="58" r="2" fill="#0A84FF" />
+
+      <rect x="122" y="44" width="8" height="28" rx="4" fill="#1A222F" stroke="#0A84FF" stroke-width="1.5" />
+      <circle cx="126" cy="58" r="2" fill="#0A84FF" />
+
+      <!-- Visor Facial Preto Espelhado (Display OLED Curvo) -->
+      <rect x="42" y="32" width="76" height="52" rx="22" fill="url(#botVisorGrad)" stroke="#1F2837" stroke-width="1.5" />
+
+      <!-- Brilho no Vidro do Visor -->
+      <path d="M48 38 C58 35 102 35 112 38" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.25" />
+
+      <!-- Olhos Digitais em LED Azul (Expressão Inteligente e Amigável) -->
+      <g id="robot-eyes" filter="url(#neonGlow)">
+        <!-- Olho Esquerdo -->
+        <ellipse cx="64" cy="58" rx="9" ry="11" fill="#0A84FF" />
+        <ellipse cx="65" cy="55" rx="4" ry="6" fill="#FFFFFF" opacity="0.9" />
+        <ellipse cx="63" cy="62" rx="3" ry="3" fill="#38A0FF" />
+
+        <!-- Olho Direito -->
+        <ellipse cx="96" cy="58" rx="9" ry="11" fill="#0A84FF" />
+        <ellipse cx="97" cy="55" rx="4" ry="6" fill="#FFFFFF" opacity="0.9" />
+        <ellipse cx="95" cy="62" rx="3" ry="3" fill="#38A0FF" />
+      </g>
+
+      <!-- Sorriso Digital Discreto / Indicador de Voz em LED -->
+      <path d="M72 74 Q80 78 88 74" stroke="#0A84FF" stroke-width="2" stroke-linecap="round" fill="none" filter="url(#softGlow)" />
+    </g>
+  </g>
+</svg>
