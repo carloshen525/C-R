@@ -596,16 +596,220 @@
     </div>
   </footer>
 
-  <!-- ================= BOTÃO FLUTUANTE DE WHATSAPP ================= -->
-  <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Estou+no+site+e+gostaria+de+um+atendimento." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Falar agora no WhatsApp">
-    <span class="floating-whatsapp-label">Falar no WhatsApp</span>
-    <div class="floating-whatsapp-btn">
-      <span class="floating-whatsapp-pulse" aria-hidden="true"></span>
+
+
+  <!-- ================= ASSISTENTE ROBÔ ESPIANDO NA BORDA ================= -->
+  <aside class="robot-peeking peeking-right" id="robotAssistant" aria-label="Assistente Virtual Inteligente">
+    <!-- Botão de Minimizar -->
+    <button type="button" class="robot-dismiss-btn" id="robotDismissBtn" title="Minimizar assistente" aria-label="Minimizar assistente virtual">
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
+    </button>
+
+    <!-- Balão de Fala Interativo -->
+    <div class="robot-speech-bubble" id="robotBubble" role="dialog" aria-modal="false" aria-labelledby="robotBubbleHeading">
+      <div class="robot-bubble-header">
+        <span class="robot-bubble-badge" id="robotBubbleHeading">Assistente R&amp;C</span>
+        <button type="button" class="robot-bubble-close" id="robotBubbleClose" aria-label="Fechar diálogo">✕</button>
+      </div>
+      <p class="robot-bubble-text">
+        Olá! Posso ajudar você a encontrar a melhor solução para seu negócio.
+      </p>
+      <div class="robot-bubble-actions">
+        <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Quero+anunciar+meu+neg%C3%B3cio+com+a+R%26C+Marketing." target="_blank" rel="noopener noreferrer" class="robot-btn">
+          <span>Quero anunciar</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Preciso+de+um+site+profissional+para+minha+empresa." target="_blank" rel="noopener noreferrer" class="robot-btn">
+          <span>Preciso de um site</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Quero+um+card%C3%A1pio+digital+moderno." target="_blank" rel="noopener noreferrer" class="robot-btn">
+          <span>Quero um cardápio digital</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </div>
     </div>
-  </a>
+
+    <!-- Gatilho / Arte do Robô Agarrando a Borda -->
+    <button type="button" class="robot-peek-trigger" id="robotTrigger" aria-label="Falar com o assistente virtual" aria-expanded="false">
+      <span class="robot-hint-pill">Posso ajudar?</span>
+      <svg class="robot-peeking-art" viewBox="0 0 130 135" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="matteShellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#263140" />
+            <stop offset="35%" stop-color="#151C26" />
+            <stop offset="70%" stop-color="#0E131A" />
+            <stop offset="100%" stop-color="#080B0F" />
+          </linearGradient>
+          <linearGradient id="metalBevelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#526480" />
+            <stop offset="50%" stop-color="#2A374A" />
+            <stop offset="100%" stop-color="#161F2B" />
+          </linearGradient>
+          <linearGradient id="visorGlassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#0B101A" />
+            <stop offset="50%" stop-color="#04060A" />
+            <stop offset="100%" stop-color="#020305" />
+          </linearGradient>
+          <linearGradient id="neonCyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#38D9FF" />
+            <stop offset="100%" stop-color="#0A84FF" />
+          </linearGradient>
+          <linearGradient id="cyberFingerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#253244" />
+            <stop offset="50%" stop-color="#3A4C66" />
+            <stop offset="100%" stop-color="#52698D" />
+          </linearGradient>
+          <linearGradient id="transpBodyGrad" x1="100%" y1="50%" x2="0%" y2="50%">
+            <stop offset="0%" stop-color="#0E1624" stop-opacity="0.7" />
+            <stop offset="45%" stop-color="#142032" stop-opacity="0.4" />
+            <stop offset="85%" stop-color="#0A84FF" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="#00D2FF" stop-opacity="0.08" />
+          </linearGradient>
+          <linearGradient id="cyberSpineGrad" x1="100%" y1="0%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#0A84FF" stop-opacity="0.7" />
+            <stop offset="50%" stop-color="#00D2FF" stop-opacity="0.85" />
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.7" />
+          </linearGradient>
+          <filter id="aiEyeGlow" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#00D2FF" flood-opacity="0.95" />
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#0A84FF" flood-opacity="0.5" />
+          </filter>
+          <filter id="subtleNeon" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#0A84FF" flood-opacity="0.85" />
+          </filter>
+          <filter id="smileNeon" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="0" stdDeviation="2.2" flood-color="#00D2FF" flood-opacity="0.95" />
+          </filter>
+          <filter id="softDepthShadow" x="-25%" y="-20%" width="150%" height="145%">
+            <feDropShadow dx="-4" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.75" />
+          </filter>
+          <clipPath id="aiVisorClip">
+            <path d="M 50,28 C 50,20 106,20 106,28 L 106,68 C 106,78 50,78 50,68 Z" />
+          </clipPath>
+        </defs>
+
+        <g id="robot-peeking-body" filter="url(#softDepthShadow)">
+          <!-- Corpo Transparente Deitado Saindo da Lateral e Encaixando na Cabeça -->
+          <g id="robot-transparent-body" opacity="0.88">
+            <path d="M 130,44 C 124,45 114,47 100,50 L 96,68 C 110,71 120,74 130,75 Z" 
+                  fill="url(#transpBodyGrad)" stroke="#0A84FF" stroke-width="1.2" stroke-opacity="0.45" />
+            <path d="M 130,45 C 122,46 112,48 101,51" 
+                  stroke="#60DFFF" stroke-width="1" stroke-opacity="0.5" stroke-linecap="round" />
+            <line x1="130" y1="59" x2="98" y2="59" 
+                  stroke="url(#cyberSpineGrad)" stroke-width="2" stroke-linecap="round" filter="url(#subtleNeon)" />
+            <path d="M 124,46 C 121,53 121,64 124,72" 
+                  stroke="#00D2FF" stroke-width="1.2" stroke-opacity="0.45" stroke-linecap="round" fill="none" />
+            <path d="M 112,48 C 109,54 109,63 112,69" 
+                  stroke="#00D2FF" stroke-width="1.2" stroke-opacity="0.35" stroke-linecap="round" fill="none" />
+            <circle cx="124" cy="59" r="1.8" fill="#00D2FF" filter="url(#subtleNeon)" />
+            <circle cx="112" cy="59" r="1.8" fill="#00D2FF" filter="url(#subtleNeon)" />
+            <ellipse cx="98" cy="59" rx="4" ry="9" fill="#151E2B" stroke="#00D2FF" stroke-width="1.2" stroke-opacity="0.6" />
+          </g>
+
+          <!-- Cabeça do Assistente IA com Sorriso Amigável e Inteligente (Mais Próxima aos Dedos) -->
+          <g id="robot-head-group">
+            <path d="M 76,16 L 72,6" stroke="#334055" stroke-width="2" stroke-linecap="round" />
+            <circle cx="71.5" cy="5.5" r="2.5" fill="#00D2FF" filter="url(#aiEyeGlow)" />
+            <circle cx="71.5" cy="5.5" r="1" fill="#FFFFFF" />
+
+            <path d="M 42,30 C 42,10 112,10 114,30 L 114,68 C 114,88 42,88 42,68 Z" 
+                  fill="url(#matteShellGrad)" stroke="url(#metalBevelGrad)" stroke-width="2" />
+
+            <rect x="36" y="38" width="7" height="24" rx="3.5" fill="#131922" stroke="#253244" stroke-width="1.2" />
+            <circle cx="39.5" cy="50" r="2" fill="#0A84FF" filter="url(#subtleNeon)" />
+
+            <path d="M 48,26 C 48,18 108,18 108,26 L 108,70 C 108,80 48,80 48,70 Z" 
+                  fill="#10151E" stroke="#253245" stroke-width="1.2" />
+            <path d="M 50,28 C 50,20 106,20 106,28 L 106,68 C 106,78 50,78 50,68 Z" 
+                  fill="url(#visorGlassGrad)" />
+            <path d="M 55,30 C 66,25 92,25 101,30" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.3" />
+
+            <!-- Olhos Digitais Expressivos & Inteligentes -->
+            <g clip-path="url(#aiVisorClip)">
+              <g id="robot-pupils-wrapper">
+                <g class="robot-single-eye">
+                  <ellipse cx="66" cy="47" rx="7.5" ry="9.5" fill="url(#neonCyanGrad)" filter="url(#aiEyeGlow)" />
+                  <ellipse cx="65.5" cy="45" rx="3" ry="4.5" fill="#FFFFFF" />
+                  <path d="M 60,44 C 61,40 71,40 72,44" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" opacity="0.8" />
+                  <circle cx="69" cy="51" r="1.5" fill="#60DFFF" opacity="0.9" />
+                </g>
+                <g class="robot-single-eye">
+                  <ellipse cx="91" cy="47" rx="7.5" ry="9.5" fill="url(#neonCyanGrad)" filter="url(#aiEyeGlow)" />
+                  <ellipse cx="90.5" cy="45" rx="3" ry="4.5" fill="#FFFFFF" />
+                  <path d="M 85,40 C 86,40 96,40 97,44" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" opacity="0.8" />
+                  <circle cx="94" cy="51" r="1.5" fill="#60DFFF" opacity="0.9" />
+                </g>
+              </g>
+            </g>
+
+            <!-- Sorriso Digital Expressivo e Simpático em LED Neon -->
+            <path d="M 67,63 Q 78.5,73 90,63" 
+                  stroke="#00D2FF" stroke-width="2.6" stroke-linecap="round" fill="none" filter="url(#smileNeon)" />
+            <circle cx="67" cy="62" r="1.2" fill="#FFFFFF" opacity="0.85" />
+            <circle cx="90" cy="62" r="1.2" fill="#FFFFFF" opacity="0.85" />
+          </g>
+
+          <!-- Mão Superior (DEDOS NA BORDA DA TELA x=130) -->
+          <g id="robot-hand-top">
+            <path d="M 124,30 C 127,30 130,30 130,30 L 130,55 C 127,55 124,55 124,55 Z" fill="#18212C" />
+
+            <!-- Dedo 1 (Indicador) -->
+            <path d="M 116,33 C 119,30 125,30 130,32 L 130,37 C 124,37 119,37 116,33 Z" 
+                  fill="url(#cyberFingerGrad)" stroke="#151C26" stroke-width="1" />
+            <circle cx="120" cy="34" r="1.2" fill="#00D2FF" opacity="0.8" />
+
+            <!-- Dedo 2 (Médio) -->
+            <path d="M 114,39 C 118,36 125,36 130,38 L 130,44 C 124,44 118,44 114,39 Z" 
+                  fill="url(#cyberFingerGrad)" stroke="#151C26" stroke-width="1" />
+            <circle cx="118" cy="40.5" r="1.3" fill="#00D2FF" />
+
+            <!-- Dedo 3 (Anelar) -->
+            <path d="M 115,46 C 119,43 125,43 130,45 L 130,50 C 124,50 119,50 115,46 Z" 
+                  fill="url(#cyberFingerGrad)" stroke="#151C26" stroke-width="1" />
+            <circle cx="119" cy="47" r="1.2" fill="#00D2FF" opacity="0.8" />
+
+            <!-- Dedo 4 (Mindinho) -->
+            <path d="M 117,52 C 120,50 126,50 130,52 L 130,56 C 125,56 120,56 117,52 Z" 
+                  fill="#2A384B" stroke="#151C26" stroke-width="1" />
+
+            <!-- Friso Luminoso de LED na borda da garra -->
+            <line x1="128.5" y1="33" x2="128.5" y2="54" stroke="#00D2FF" stroke-width="2" stroke-linecap="round" filter="url(#subtleNeon)" />
+          </g>
+
+          <!-- Mão Inferior (DEDOS NA BORDA DA TELA x=130) -->
+          <g id="robot-hand-bottom">
+            <path d="M 124,71 C 127,71 130,71 130,71 L 130,96 C 127,96 124,96 124,96 Z" fill="#18212C" />
+
+            <!-- Dedo 1 (Indicador) -->
+            <path d="M 116,74 C 119,71 125,71 130,73 L 130,78 C 124,78 119,78 116,74 Z" 
+                  fill="url(#cyberFingerGrad)" stroke="#151C26" stroke-width="1" />
+            <circle cx="120" cy="75" r="1.2" fill="#00D2FF" opacity="0.8" />
+
+            <!-- Dedo 2 (Médio) -->
+            <path d="M 114,80 C 118,77 125,77 130,79 L 130,85 C 124,85 118,85 114,80 Z" 
+                  fill="url(#cyberFingerGrad)" stroke="#151C26" stroke-width="1" />
+            <circle cx="118" cy="81.5" r="1.3" fill="#00D2FF" />
+
+            <!-- Dedo 3 (Anelar) -->
+            <path d="M 115,87 C 119,84 125,84 130,86 L 130,91 C 124,91 119,91 115,87 Z" 
+                  fill="url(#cyberFingerGrad)" stroke="#151C26" stroke-width="1" />
+            <circle cx="119" cy="88" r="1.2" fill="#00D2FF" opacity="0.8" />
+
+            <!-- Dedo 4 (Mindinho) -->
+            <path d="M 117,93 C 120,91 126,91 130,93 L 130,97 C 125,97 120,97 117,93 Z" 
+                  fill="#2A384B" stroke="#151C26" stroke-width="1" />
+
+            <!-- Friso Luminoso de LED na borda da garra -->
+            <line x1="128.5" y1="74" x2="128.5" y2="95" stroke="#00D2FF" stroke-width="2" stroke-linecap="round" filter="url(#subtleNeon)" />
+          </g>
+        </g>
+      </svg>
+    </button>
+  </aside>
 
   <!-- Script Principal Otimizado -->
   <script src="js/main.js" defer></script>
