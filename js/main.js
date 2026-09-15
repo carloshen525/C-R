@@ -1,5 +1,5 @@
 /**
- * C&R MARKETING - JAVASCRIPT DE ALTA PERFORMANCE
+ * R&C MARKETING - JAVASCRIPT DE ALTA PERFORMANCE
  * Ultraleve, sem dependências, otimizado para carregamento instantâneo.
  */
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       threshold: 0.1
     };
 
-    const revealElements = document.querySelectorAll('.service-card, .about-image, .about-content, .diff-card, .process-card, .faq-item');
+    const revealElements = document.querySelectorAll('.service-card, .about-image, .about-content, .project-card, .diff-card, .process-card, .faq-item');
     
     // Configura estilos iniciais para fade-in sutil
     revealElements.forEach(el => {
