@@ -32,6 +32,91 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // 1.1 Texto Dinâmico na Hero Section (Typewriter Effect Sincronizado com Imagens)
+  const typewriterText = document.getElementById('heroTypewriterText');
+  const heroSlides = document.querySelectorAll('.hero-slide');
+
+  if (typewriterText && heroSlides.length > 0) {
+    const phrases = [
+      'Sites Personalizados',
+      'Campanhas no Meta Ads',
+      'Cardápios Digitais',
+      'Landing Pages',
+      'Estratégias para vender mais'
+    ];
+
+    let phraseIdx = 0;
+    let charIdx = phrases[0].length;
+    let isDeleting = false;
+    let typewriterTimer = null;
+
+    function setSlide(index) {
+      heroSlides.forEach((slide, idx) => {
+        if (idx === index) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+    }
+
+    // Acessibilidade: respeita preferência por redução de movimento (prefers-reduced-motion)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      typewriterText.textContent = phrases[0];
+      setSlide(0);
+      const cursor = document.querySelector('.typewriter-cursor');
+      if (cursor) cursor.style.display = 'none';
+    } else {
+      function runTypewriter() {
+        const current = phrases[phraseIdx];
+
+        if (isDeleting) {
+          charIdx--;
+          typewriterText.textContent = current.substring(0, charIdx);
+        } else {
+          charIdx++;
+          typewriterText.textContent = current.substring(0, charIdx);
+        }
+
+        let speed = isDeleting ? 40 : 80;
+
+        // Quando a frase foi totalmente digitada
+        if (!isDeleting && charIdx === current.length) {
+          // Pausa por aproximadamente 2 segundos
+          speed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+          // Quando a frase foi totalmente apagada letra por letra
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          // Troca a ilustração com transição suave sincronizada com o novo serviço
+          setSlide(phraseIdx);
+          speed = 350; // Pausa sutil antes de começar a próxima frase
+        }
+
+        typewriterTimer = setTimeout(runTypewriter, speed);
+      }
+
+      // Pausa inicial de 2 segundos antes de apagar a primeira frase já carregada no HTML
+      typewriterTimer = setTimeout(() => {
+        isDeleting = true;
+        runTypewriter();
+      }, 2000);
+
+      // Otimização de performance: pausa quando a aba estiver em segundo plano
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          clearTimeout(typewriterTimer);
+        } else {
+          clearTimeout(typewriterTimer);
+          typewriterTimer = setTimeout(runTypewriter, 400);
+        }
+      });
+    }
+  }
+
   // 2. Acordeão de FAQ (Perguntas Frequentes)
   const faqItems = document.querySelectorAll('.faq-item');
 
@@ -62,6 +147,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 2.1 Acordeão de Projetos e Serviços por Categoria (Abre e Fecha)
+  const projectAccordionItems = document.querySelectorAll('.project-accordion-item');
+
+  projectAccordionItems.forEach((item) => {
+    const headerBtn = item.querySelector('.project-accordion-header');
+    const toggleLabel = item.querySelector('.accordion-toggle-label');
+    if (!headerBtn) return;
+
+    headerBtn.addEventListener('click', () => {
+      const isAlreadyActive = item.classList.contains('active');
+
+      // Fecha os outros itens para manter o layout focado e organizado
+      projectAccordionItems.forEach((otherItem) => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          const otherBtn = otherItem.querySelector('.project-accordion-header');
+          const otherLabel = otherItem.querySelector('.accordion-toggle-label');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+          if (otherLabel) otherLabel.textContent = 'Ver detalhes';
+        }
+      });
+
+      // Alterna o item clicado (abre e fecha)
+      if (isAlreadyActive) {
+        item.classList.remove('active');
+        headerBtn.setAttribute('aria-expanded', 'false');
+        if (toggleLabel) toggleLabel.textContent = 'Ver detalhes';
+      } else {
+        item.classList.add('active');
+        headerBtn.setAttribute('aria-expanded', 'true');
+        if (toggleLabel) toggleLabel.textContent = 'Fechar';
+      }
+    });
+  });
+
   // 3. Efeito no Header ao Rolar a Página
   const siteHeader = document.querySelector('.site-header');
   function handleScroll() {
@@ -84,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
       threshold: 0.1
     };
 
-    const revealElements = document.querySelectorAll('.service-card, .about-image, .about-content, .project-card, .diff-card, .process-card, .faq-item');
+    const revealElements = document.querySelectorAll('.service-card, .about-image, .about-content, .project-accordion-item, .diff-card, .process-card, .faq-item');
     
     // Configura estilos iniciais para fade-in sutil
     revealElements.forEach(el => {
@@ -128,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const robotBubble = document.getElementById('robotBubble');
   const robotBubbleClose = document.getElementById('robotBubbleClose');
   const robotDismissBtn = document.getElementById('robotDismissBtn');
+  const robotDropZone = document.getElementById('robotDropZone');
   const robotHead = document.getElementById('robot-head-group');
   const robotPupils = document.getElementById('robot-pupils-wrapper');
 
@@ -174,16 +295,12 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         toggleBubble(false);
         robotAssistant.classList.add('minimized');
-        try {
-          sessionStorage.setItem('rc_robot_dismissed', '1');
-        } catch (err) {}
       });
     }
 
+    // Garante que ao recarregar a página o robô sempre reaparece
     try {
-      if (sessionStorage.getItem('rc_robot_dismissed') === '1') {
-        robotAssistant.classList.add('minimized');
-      }
+      sessionStorage.removeItem('rc_robot_dismissed');
     } catch (err) {}
 
     // 6.2 Sistema de Arrasto Livre e Fixação Magnética na Borda (Drag & Snap-to-Edge)
@@ -223,6 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hasDragged = true;
         isDragging = true;
         robotAssistant.classList.add('is-dragging');
+        if (robotDropZone) robotDropZone.classList.add('visible');
         toggleBubble(false);
       }
 
@@ -235,6 +353,13 @@ document.addEventListener('DOMContentLoaded', () => {
         robotAssistant.style.top = `${newTop}px`;
         robotAssistant.style.right = 'auto';
         robotAssistant.style.transform = 'none';
+
+        // Detecta se o ponteiro/robô está sobre a zona de fechamento inferior
+        if (robotDropZone) {
+          const isNearBottom = e.clientY > window.innerHeight - 130;
+          const isCentered = Math.abs(e.clientX - window.innerWidth / 2) < 160;
+          robotDropZone.classList.toggle('is-over', isNearBottom && isCentered);
+        }
       }
     });
 
@@ -248,6 +373,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isDragging) {
         isDragging = false;
         robotAssistant.classList.remove('is-dragging');
+
+        const wasOverDropZone = robotDropZone && robotDropZone.classList.contains('is-over');
+        if (robotDropZone) {
+          robotDropZone.classList.remove('visible', 'is-over');
+        }
+
+        // Se soltou na zona de fechar: minimiza o robô com animação
+        if (wasOverDropZone) {
+          robotAssistant.classList.add('is-dismissing');
+          setTimeout(() => {
+            robotAssistant.classList.remove('is-dismissing');
+            robotAssistant.classList.add('minimized');
+          }, 320);
+          if (robotPupils) robotPupils.style.transform = 'translate(0px, 0px)';
+          if (robotHead) robotHead.style.transform = 'rotateY(0deg) rotateX(0deg)';
+          return;
+        }
 
         // Define a lateral mais próxima
         const screenMidX = window.innerWidth / 2;
@@ -268,15 +410,14 @@ document.addEventListener('DOMContentLoaded', () => {
           robotAssistant.classList.add('peeking-left');
           robotAssistant.style.left = '0px';
           robotAssistant.style.right = 'auto';
-          robotAssistant.style.transform = 'translateY(-50%) translateX(0)';
         } else {
           currentSide = 'right';
           robotAssistant.classList.remove('peeking-left');
           robotAssistant.classList.add('peeking-right');
           robotAssistant.style.right = '0px';
           robotAssistant.style.left = 'auto';
-          robotAssistant.style.transform = 'translateY(-50%) translateX(0)';
         }
+        robotAssistant.style.transform = '';
 
         if (robotPupils) robotPupils.style.transform = 'translate(0px, 0px)';
         if (robotHead) robotHead.style.transform = 'rotateY(0deg) rotateX(0deg)';
@@ -296,14 +437,16 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleBubble();
     });
 
-    // 6.3 Alternância suave entre seções mantendo a altura fixada pelo usuário
+    // 6.3 Alternância suave a cada duas seções (Desktop & Mobile)
     const sectionSideConfig = [
       { id: 'inicio', side: 'right' },
       { id: 'sobre', side: 'right' },
       { id: 'servicos', side: 'left' },
       { id: 'projetos', side: 'left' },
-      { id: 'como-trabalhamos', side: 'left' },
-      { id: 'faq', side: 'right' }
+      { id: 'diferenciais', side: 'right' },
+      { id: 'como-trabalhamos', side: 'right' },
+      { id: 'contato-cta', side: 'left' },
+      { id: 'faq', side: 'left' }
     ];
 
     let currentSide = 'right';
@@ -331,6 +474,8 @@ document.addEventListener('DOMContentLoaded', () => {
           robotAssistant.style.left = 'auto';
         }
 
+        robotAssistant.style.transform = '';
+
         if (userPinnedY !== null) {
           robotAssistant.style.top = `${userPinnedY}px`;
         }
@@ -340,26 +485,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
           robotAssistant.classList.remove('is-hiding');
-          isSideTransitioning = false;
-        }, 60);
-      }, 360);
+          setTimeout(() => {
+            isSideTransitioning = false;
+          }, 350);
+        }, 50);
+      }, 300);
     }
 
+    // Verificação contínua e infalível no scroll (funciona 100% no touch mobile e desktop)
+    function checkSectionSideOnScroll() {
+      if (isDragging || isSideTransitioning) return;
+      const triggerY = window.innerHeight * 0.45;
+
+      for (let i = 0; i < sectionSideConfig.length; i++) {
+        const item = sectionSideConfig[i];
+        const el = document.getElementById(item.id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= triggerY && rect.bottom >= triggerY) {
+          if (currentSide !== item.side) {
+            setRobotSide(item.side);
+          }
+          return;
+        }
+      }
+
+      // Topo absoluto da página
+      if (window.scrollY < 120 && currentSide !== 'right') {
+        setRobotSide('right');
+      }
+    }
+
+    let scrollSideRaf = null;
+    function triggerScrollSideCheck() {
+      if (!scrollSideRaf) {
+        scrollSideRaf = requestAnimationFrame(() => {
+          scrollSideRaf = null;
+          checkSectionSideOnScroll();
+        });
+      }
+    }
+
+    window.addEventListener('scroll', triggerScrollSideCheck, { passive: true });
+    window.addEventListener('touchmove', triggerScrollSideCheck, { passive: true });
+
+    // IntersectionObserver complementar com threshold 0
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const targetId = entry.target.id;
-            const match = sectionSideConfig.find(item => item.id === targetId);
-            if (match) {
+          if (entry.isIntersecting && !isDragging && !isSideTransitioning) {
+            const match = sectionSideConfig.find(item => item.id === entry.target.id);
+            if (match && currentSide !== match.side) {
               setRobotSide(match.side);
             }
           }
         });
       }, {
         root: null,
-        rootMargin: '-25% 0px -40% 0px',
-        threshold: 0.2
+        rootMargin: '-15% 0px -25% 0px',
+        threshold: 0
       });
 
       sectionSideConfig.forEach(item => {

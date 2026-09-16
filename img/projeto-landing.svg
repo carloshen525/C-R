@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="landingBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141822" />
+      <stop offset="100%" stop-color="#0B0E14" />
+    </linearGradient>
+    <linearGradient id="landingCtaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#25D366" />
+      <stop offset="100%" stop-color="#128C7E" />
+    </linearGradient>
+    <linearGradient id="vslGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1C2333" />
+      <stop offset="100%" stop-color="#0D121B" />
+    </linearGradient>
+    <filter id="lShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+    <filter id="vslGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#0A84FF" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Fundo do Card de Mockup -->
+  <rect width="480" height="300" rx="14" fill="url(#landingBg)" />
+  <circle cx="240" cy="150" r="130" fill="#0A84FF" fill-opacity="0.08" filter="blur(30px)" />
+
+  <!-- Mockup do Laptop (Página de Vendas / Landing Page) -->
+  <g transform="translate(45, 30)" filter="url(#lShadow)">
+    <!-- Tela -->
+    <rect x="30" y="10" width="290" height="185" rx="10" fill="#181D26" stroke="#2A3444" stroke-width="1.5" />
+    <!-- Display -->
+    <rect x="38" y="24" width="274" height="163" rx="6" fill="#0A0D12" />
+    
+    <!-- Barra superior do browser -->
+    <rect x="38" y="24" width="274" height="16" rx="6" fill="#141922" />
+    <circle cx="48" cy="32" r="2.5" fill="#FF5F56" />
+    <circle cx="56" cy="32" r="2.5" fill="#FFBD2E" />
+    <circle cx="64" cy="32" r="2.5" fill="#27C93F" />
+    <rect x="80" y="28" width="110" height="8" rx="4" fill="#1F2633" />
+
+    <!-- Barra de Urgência / Banner Superior da Landing Page -->
+    <rect x="38" y="40" width="274" height="12" fill="#0A84FF" fill-opacity="0.15" />
+    <rect x="110" y="44" width="130" height="4" rx="2" fill="#0A84FF" />
+
+    <!-- Headline de Alta Conversão -->
+    <rect x="65" y="58" width="220" height="10" rx="3" fill="#FFFFFF" fill-opacity="0.95" />
+    <rect x="85" y="72" width="180" height="7" rx="2.5" fill="#9CA3AF" />
+
+    <!-- Player de Vídeo de Vendas (VSL) -->
+    <rect x="75" y="85" width="200" height="68" rx="8" fill="url(#vslGrad)" stroke="#263347" stroke-width="1.2" />
+    <circle cx="175" cy="119" r="16" fill="#0A84FF" filter="url(#vslGlow)" />
+    <polygon points="172,112 182,119 172,126" fill="#FFFFFF" />
+
+    <!-- Botão CTA Chamativo da Landing Page -->
+    <rect x="105" y="160" width="140" height="18" rx="9" fill="url(#landingCtaGrad)" />
+    <rect x="130" y="166" width="90" height="6" rx="3" fill="#FFFFFF" />
+
+    <!-- Badges de Confiança (Garantia / Estrelas) -->
+    <g transform="translate(42, 110)">
+      <rect x="0" y="0" width="26" height="26" rx="6" fill="#161D28" stroke="#2D384D" stroke-width="0.8" />
+      <path d="M13 5 L17 9 L15 17 L13 21 L11 17 L9 9 Z" fill="#0A84FF" fill-opacity="0.4" />
+      <circle cx="13" cy="13" r="5" fill="#0A84FF" />
+    </g>
+
+    <!-- Base do Laptop -->
+    <path d="M0 195 L350 195 C355 195 358 198 355 203 L340 216 C337 219 333 220 328 220 L22 220 C17 220 13 219 10 216 L-5 203 C-8 198 -5 195 0 195 Z" fill="#1F2633" stroke="#2A3546" stroke-width="1.2" />
+    <rect x="150" y="197" width="50" height="4" rx="2" fill="#0E1218" />
+  </g>
+
+  <!-- Mockup do Celular (Página de Vendas no Mobile) -->
+  <g transform="translate(325, 95)" filter="url(#lShadow)">
+    <rect x="0" y="0" width="105" height="175" rx="18" fill="#181D26" stroke="#3A4659" stroke-width="2" />
+    <rect x="5" y="6" width="95" height="163" rx="14" fill="#0B0E14" />
+    <!-- Notch -->
+    <rect x="35" y="10" width="35" height="7" rx="3.5" fill="#1A202A" />
+
+    <!-- Conteúdo Mobile Landing Page -->
+    <rect x="14" y="24" width="77" height="6" rx="3" fill="#0A84FF" />
+    <rect x="14" y="34" width="77" height="8" rx="2.5" fill="#FFFFFF" fill-opacity="0.9" />
+    <rect x="14" y="45" width="55" height="5" rx="2" fill="#6B7280" />
+    
+    <!-- Mini VSL no Celular -->
+    <rect x="14" y="55" width="77" height="44" rx="6" fill="#18202D" stroke="#2B364A" stroke-width="0.8" />
+    <circle cx="52" cy="77" r="10" fill="#0A84FF" />
+    <polygon points="50,73 57,77 50,81" fill="#FFFFFF" />
+
+    <!-- Botão CTA Mobile -->
+    <rect x="14" y="106" width="77" height="14" rx="7" fill="url(#landingCtaGrad)" />
+    <rect x="28" y="111" width="49" height="4" rx="2" fill="#FFFFFF" />
+
+    <!-- Avaliação 5 Estrelas -->
+    <g transform="translate(18, 126)">
+      <circle cx="6" cy="4" r="2.5" fill="#FFBD2E" />
+      <circle cx="14" cy="4" r="2.5" fill="#FFBD2E" />
+      <circle cx="22" cy="4" r="2.5" fill="#FFBD2E" />
+      <circle cx="30" cy="4" r="2.5" fill="#FFBD2E" />
+      <circle cx="38" cy="4" r="2.5" fill="#FFBD2E" />
+      <rect x="46" y="2" width="24" height="4" rx="2" fill="#9CA3AF" />
+    </g>
+
+    <rect x="14" y="136" width="77" height="24" rx="5" fill="#141A24" stroke="#222A36" stroke-width="0.8" />
+    <!-- Barra inferior -->
+    <rect x="38" y="163" width="30" height="3" rx="1.5" fill="#FFFFFF" fill-opacity="0.3" />
+  </g>
+</svg>
+
