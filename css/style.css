@@ -314,6 +314,21 @@ button {
   font-weight: 800;
   color: #FFFFFF;
   letter-spacing: -0.03em;
+  text-decoration: none;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.logo:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 0 16px rgba(10, 132, 255, 0.45));
+}
+
+.logo-img {
+  height: 52px;
+  width: auto;
+  max-width: 190px;
+  object-fit: contain;
+  display: block;
 }
 
 .logo-symbol {
@@ -1514,16 +1529,17 @@ button {
   }
 
   .portfolio-card {
-    flex: 0 0 82%;
-    max-width: 320px;
-    min-width: 250px;
+    flex: 0 0 80%;
+    max-width: 300px;
+    min-width: 240px;
     scroll-snap-align: center;
   }
 
-  /* Imagem em proporção 9:16 no mobile (formato de tela vertical/smartphone) */
+  /* Imagem com proporção e altura calibradas no mobile para o botão aparecer junto */
   .portfolio-card-image {
     width: 100%;
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 4 / 5;
+    max-height: 280px;
     height: auto;
   }
 
@@ -1535,7 +1551,7 @@ button {
   }
 
   .portfolio-card-content {
-    padding: 1.25rem;
+    padding: 1rem 1.15rem 1.15rem;
   }
 
   .portfolio-card-title {
@@ -2248,6 +2264,11 @@ button {
 }
 
 @media (max-width: 768px) {
+  .logo-img {
+    height: 42px;
+    max-width: 150px;
+  }
+
   .nav-desktop,
   .header-cta .btn {
     display: none;
