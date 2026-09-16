@@ -145,15 +145,13 @@
         <div class="hero-illustration" id="heroIllustrationContainer" aria-hidden="true">
           <div class="hero-slides-wrapper">
             <!-- 1. Sites Personalizados -->
-            <img src="img/projeto-site.svg" alt="Sites Personalizados" class="hero-slide active" data-index="0" width="720" height="540" fetchpriority="high">
+            <img src="img/mockup-site-personalizado.png" alt="Sites Personalizados" class="hero-slide active" data-index="0" width="720" height="540" fetchpriority="high">
             <!-- 2. Campanhas no Meta Ads -->
-            <img src="img/projeto-meta.svg" alt="Campanhas no Meta Ads" class="hero-slide" data-index="1" width="720" height="540" loading="lazy">
+            <img src="img/mockup-meta-ads.png" alt="Campanhas no Meta Ads" class="hero-slide" data-index="1" width="720" height="540" loading="lazy">
             <!-- 3. Cardápios Digitais -->
-            <img src="img/projeto-cardapio.svg" alt="Cardápios Digitais" class="hero-slide" data-index="2" width="720" height="540" loading="lazy">
+            <img src="img/mockup-cardapio-digital.jpg" alt="Cardápios Digitais" class="hero-slide" data-index="2" width="720" height="540" loading="lazy">
             <!-- 4. Landing Pages -->
-            <img src="img/projeto-landing.svg" alt="Landing Pages" class="hero-slide" data-index="3" width="720" height="540" loading="lazy">
-            <!-- 5. Estratégias para vender mais -->
-            <img src="img/hero-illustration.svg" alt="Estratégias para vender mais" class="hero-slide" data-index="4" width="720" height="540" loading="lazy">
+            <img src="img/mockup-landing-page.png" alt="Landing Pages" class="hero-slide" data-index="3" width="720" height="540" loading="lazy">
           </div>
         </div>
       </div>
@@ -339,7 +337,7 @@
               <div class="project-accordion-inner">
                 <div class="project-showcase">
                   <div class="project-mockup-wrapper">
-                    <img src="img/projeto-site.svg" alt="Mockup de Site Personalizado responsivo para desktop e celular" width="480" height="300" loading="lazy">
+                    <img src="img/mockup-site-personalizado.png" alt="Mockup de Site Personalizado responsivo para desktop e celular" width="480" height="300" loading="lazy">
                   </div>
                   <div class="project-showcase-info">
                     <h4 class="project-showcase-title">O que entregamos nessa categoria</h4>
@@ -408,7 +406,7 @@
               <div class="project-accordion-inner">
                 <div class="project-showcase">
                   <div class="project-mockup-wrapper">
-                    <img src="img/projeto-meta.svg" alt="Mockup de Campanhas no Meta Ads para Facebook e Instagram" width="480" height="300" loading="lazy">
+                    <img src="img/mockup-meta-ads.png" alt="Mockup de Campanhas no Meta Ads para Facebook e Instagram" width="480" height="300" loading="lazy">
                   </div>
                   <div class="project-showcase-info">
                     <h4 class="project-showcase-title">O que entregamos nessa categoria</h4>
@@ -479,7 +477,7 @@
               <div class="project-accordion-inner">
                 <div class="project-showcase">
                   <div class="project-mockup-wrapper">
-                    <img src="img/projeto-google.svg" alt="Mockup de Campanhas no Google Ads no topo das pesquisas" width="480" height="300" loading="lazy">
+                    <img src="img/mockup-google-ads.png" alt="Mockup de Painel e Campanhas no Google Ads" width="480" height="300" loading="lazy">
                   </div>
                   <div class="project-showcase-info">
                     <h4 class="project-showcase-title">O que entregamos nessa categoria</h4>
@@ -550,7 +548,7 @@
               <div class="project-accordion-inner">
                 <div class="project-showcase">
                   <div class="project-mockup-wrapper">
-                    <img src="img/projeto-cardapio.svg" alt="Mockup de Cardápio Digital interativo para celular" width="480" height="300" loading="lazy">
+                    <img src="img/mockup-cardapio-digital.jpg" alt="Mockup de Cardápio Digital interativo para celular" width="480" height="300" loading="lazy">
                   </div>
                   <div class="project-showcase-info">
                     <h4 class="project-showcase-title">O que entregamos nessa categoria</h4>
@@ -596,8 +594,49 @@
       </div>
     </section>
 
+    <!-- ================= SEÇÃO PORTFÓLIO DE PROJETOS DESENVOLVIDOS (CATÁLOGO INTERATIVO) ================= -->
+    <section class="section-spacing portfolio-section has-abstract-bg" id="portfolio">
+      <div class="container">
+        <div class="portfolio-header-flex">
+          <div class="section-header">
+            <div class="section-badge">Portfólio &amp; Casos Reais</div>
+            <h2 class="section-title">Projetos Desenvolvidos</h2>
+            <p class="section-subtitle">Conheça alguns dos projetos desenvolvidos pela R&amp;C Marketing. Navegue pelo catálogo e veja exemplos reais de sites, campanhas e soluções criadas para nossos clientes.</p>
+          </div>
+          <div class="portfolio-nav-controls" aria-label="Navegação do catálogo">
+            <button type="button" class="portfolio-nav-btn prev" id="portfolioPrev" aria-label="Projeto anterior">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button type="button" class="portfolio-nav-btn next" id="portfolioNext" aria-label="Próximo projeto">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="portfolio-carousel-wrapper">
+          <div class="portfolio-track" id="portfolioTrack" role="region" aria-label="Carrossel de projetos">
+            <!-- Projetos injetados dinamicamente via JS a partir de lista facilmente configurável -->
+          </div>
+        </div>
+
+        <!-- Indicador sutil de arraste para mobile e desktop -->
+        <div class="portfolio-drag-hint" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="8 7 3 12 8 17"></polyline>
+            <polyline points="16 7 21 12 16 17"></polyline>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+          </svg>
+          <span>Deslize para o lado para ver mais projetos</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= SEÇÃO DIFERENCIAIS ================= -->
-    <section class="section-spacing differentials-section has-abstract-bg" id="diferenciais">
+    <section class="section-spacing differentials-section" id="diferenciais">
       <div class="container">
         <div class="section-header">
           <div class="section-badge">Nossos Valores</div>
@@ -1074,6 +1113,47 @@
         </svg>
       </div>
       <span class="robot-drop-label">Solte aqui para fechar</span>
+    </div>
+  </div>
+
+  <!-- Modal de Visualização de Projeto ao Vivo (com botão destacado de voltar) -->
+  <div id="projectViewerModal" class="project-viewer-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualizador de Projeto">
+    <div class="project-viewer-backdrop" id="projectViewerBackdrop"></div>
+    <div class="project-viewer-window">
+      <header class="project-viewer-header">
+        <button type="button" class="project-viewer-back-btn" id="projectViewerCloseBtn" aria-label="Voltar para o site da R&C Marketing">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Voltar para R&amp;C Marketing</span>
+        </button>
+
+        <div class="project-viewer-center">
+          <span class="project-viewer-badge" id="projectViewerBadge">Site Institucional</span>
+          <span class="project-viewer-title" id="projectViewerTitle">Instituto Amadeus de Artes</span>
+        </div>
+
+        <a href="#" target="_blank" rel="noopener noreferrer" class="project-viewer-ext-btn" id="projectViewerExtLink" title="Abrir diretamente em nova aba">
+          <span>Abrir original</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </header>
+
+      <div class="project-viewer-body">
+        <div class="project-viewer-loader" id="projectViewerLoader" aria-hidden="true">
+          <div class="viewer-spinner"></div>
+          <span>Carregando...</span>
+        </div>
+        <iframe id="projectViewerFrame" src="about:blank" title="Visualização ao vivo do projeto" loading="lazy"></iframe>
+        <div class="project-viewer-image-wrapper" id="projectViewerImageWrapper" aria-hidden="true">
+          <img id="projectViewerImage" src="" alt="" loading="lazy">
+        </div>
+      </div>
     </div>
   </div>
 

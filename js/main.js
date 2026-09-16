@@ -41,8 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Sites Personalizados',
       'Campanhas no Meta Ads',
       'Cardápios Digitais',
-      'Landing Pages',
-      'Estratégias para vender mais'
+      'Landing Pages'
     ];
 
     let phraseIdx = 0;
@@ -240,6 +239,325 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     });
+  });
+
+  // 5. Catálogo Interativo de Projetos Desenvolvidos (Portfólio Carrossel)
+  // Estrutura modular: para adicionar um novo projeto no futuro, basta incluir um objeto abaixo!
+  const portfolioProjects = [
+    {
+      titulo: "Instituto Amadeus de Artes",
+      categoria: "Site Institucional",
+      imagem: "img/projeto-amadeus.png",
+      link: "https://amadeusartes.com",
+      linkTexto: "Ver Site"
+    },
+    {
+      titulo: "Exército Trader",
+      categoria: "Landing Page",
+      imagem: "img/projeto-exercito-trader.png",
+      link: "https://exercito-trader.vercel.app",
+      linkTexto: "Ver Site"
+    },
+    {
+      titulo: "Lanchonete Du Bão",
+      categoria: "Cardápio Digital",
+      imagem: "img/projeto-cardapio-dubao.png",
+      link: "https://lanchonete-du-bao.pedeskilo.com.br",
+      linkTexto: "Ver Cardápio",
+      openInNewTab: true
+    },
+    {
+      titulo: "Escola de Música",
+      categoria: "Meta Ads",
+      imagem: "img/projeto-meta-musica.png",
+      link: null // Criativo de anúncio sem link: abre no visualizador de imagem
+    },
+    {
+      titulo: "Floricultura Terra e Silva",
+      categoria: "Meta Ads",
+      imagem: "img/projeto-meta-floricultura.png",
+      link: null // Criativo de anúncio sem link: abre no visualizador de imagem
+    },
+    {
+      titulo: "Delivery de Macarrão",
+      categoria: "Meta Ads",
+      imagem: "img/projeto-meta-macarrao.png",
+      link: null // Criativo de anúncio sem link: abre no visualizador de imagem
+    }
+  ];
+
+  const portfolioTrack = document.getElementById('portfolioTrack');
+  const portfolioPrev = document.getElementById('portfolioPrev');
+  const portfolioNext = document.getElementById('portfolioNext');
+
+  if (portfolioTrack) {
+    portfolioTrack.innerHTML = portfolioProjects.map(proj => {
+      const hasLink = proj.link && proj.link.trim() !== '';
+      const isWebsiteUrl = hasLink && !proj.link.includes('wa.me') && !proj.openInNewTab && proj.link.startsWith('http');
+      const isImageOnly = !hasLink;
+
+      const buttonHtml = hasLink
+        ? `<div class="portfolio-card-action">
+            <a href="${proj.link}" ${isWebsiteUrl ? `data-live-viewer="true"` : `target="_blank"`} rel="noopener noreferrer" class="portfolio-btn-link" data-title="${proj.titulo}" data-cat="${proj.categoria}" aria-label="${proj.linkTexto || 'Ver Site'} - ${proj.titulo}">
+              <span>${proj.linkTexto || 'Ver Site'}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>`
+        : `<div class="portfolio-card-action">
+            <button type="button" class="portfolio-btn-link portfolio-btn-zoom" data-view-image="${proj.imagem}" data-title="${proj.titulo}" data-cat="${proj.categoria}" aria-label="Visualizar imagem completa de ${proj.titulo}">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+              <span>Visualizar Imagem</span>
+            </button>
+          </div>`;
+
+      return `
+        <article class="portfolio-card">
+          <div class="portfolio-card-image ${isImageOnly ? 'is-clickable' : ''}" ${isImageOnly ? `data-view-image="${proj.imagem}" data-title="${proj.titulo}" data-cat="${proj.categoria}" role="button" tabindex="0" aria-label="Ampliar imagem de ${proj.titulo}"` : ''}>
+            <span class="portfolio-card-badge">${proj.categoria}</span>
+            <img src="${proj.imagem}" alt="${proj.titulo} - ${proj.categoria}" width="400" height="250" loading="lazy">
+            ${isImageOnly ? `
+            <div class="portfolio-image-zoom-overlay" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+              <span>Toque para ampliar</span>
+            </div>` : ''}
+          </div>
+          <div class="portfolio-card-content">
+            <div class="portfolio-card-info">
+              <span class="portfolio-card-cat-name">${proj.categoria}</span>
+              <h3 class="portfolio-card-title">${proj.titulo}</h3>
+            </div>
+            ${buttonHtml}
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    // Navegação por Setas (Previous / Next)
+    function getScrollStep() {
+      const firstCard = portfolioTrack.querySelector('.portfolio-card');
+      if (!firstCard) return 320;
+      const style = window.getComputedStyle(portfolioTrack);
+      const gap = parseFloat(style.gap) || 24;
+      return firstCard.offsetWidth + gap;
+    }
+
+    function updateNavButtonsState() {
+      if (!portfolioPrev || !portfolioNext) return;
+      const maxScrollLeft = portfolioTrack.scrollWidth - portfolioTrack.clientWidth - 4;
+      portfolioPrev.disabled = portfolioTrack.scrollLeft <= 4;
+      portfolioNext.disabled = portfolioTrack.scrollLeft >= maxScrollLeft;
+    }
+
+    if (portfolioPrev) {
+      portfolioPrev.addEventListener('click', () => {
+        portfolioTrack.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+      });
+    }
+
+    if (portfolioNext) {
+      portfolioNext.addEventListener('click', () => {
+        portfolioTrack.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+      });
+    }
+
+    portfolioTrack.addEventListener('scroll', updateNavButtonsState, { passive: true });
+    window.addEventListener('resize', updateNavButtonsState, { passive: true });
+    setTimeout(updateNavButtonsState, 100);
+
+    // Navegação por Arrasto no Desktop (Mouse Drag-to-Scroll)
+    let isTrackDragging = false;
+    let trackStartX = 0;
+    let trackScrollLeft = 0;
+    let trackDraggedDistance = 0;
+
+    portfolioTrack.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isTrackDragging = true;
+      trackDraggedDistance = 0;
+      trackStartX = e.pageX - portfolioTrack.offsetLeft;
+      trackScrollLeft = portfolioTrack.scrollLeft;
+      portfolioTrack.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isTrackDragging) return;
+      e.preventDefault();
+      const x = e.pageX - portfolioTrack.offsetLeft;
+      const walk = (x - trackStartX) * 1.5;
+      trackDraggedDistance += Math.abs(x - trackStartX);
+      portfolioTrack.scrollLeft = trackScrollLeft - walk;
+    });
+
+    function stopTrackDrag() {
+      if (!isTrackDragging) return;
+      isTrackDragging = false;
+      portfolioTrack.classList.remove('is-dragging');
+    }
+
+    window.addEventListener('mouseup', stopTrackDrag);
+    portfolioTrack.addEventListener('mouseleave', stopTrackDrag);
+
+    // Intercepta clique no carrossel: diferencia arraste de clique e abre visualizador ao vivo ou imagem ampliada
+    portfolioTrack.addEventListener('click', (e) => {
+      if (trackDraggedDistance > 6) {
+        e.preventDefault();
+        e.stopPropagation();
+        trackDraggedDistance = 0;
+        return;
+      }
+
+      // 1. Clique para abrir site ao vivo
+      const viewerBtn = e.target.closest('[data-live-viewer="true"]');
+      if (viewerBtn) {
+        e.preventDefault();
+        const url = viewerBtn.getAttribute('href');
+        const title = viewerBtn.getAttribute('data-title');
+        const cat = viewerBtn.getAttribute('data-cat');
+        openProjectViewer(url, title, cat);
+        return;
+      }
+
+      // 2. Clique para visualizar imagem completa (projetos que são só imagem)
+      const imageTrigger = e.target.closest('[data-view-image]');
+      if (imageTrigger) {
+        e.preventDefault();
+        const imgSrc = imageTrigger.getAttribute('data-view-image');
+        const title = imageTrigger.getAttribute('data-title');
+        const cat = imageTrigger.getAttribute('data-cat');
+        openImageViewer(imgSrc, title, cat);
+      }
+    });
+
+    // Acessibilidade via teclado para cards de imagem
+    portfolioTrack.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const imageTrigger = e.target.closest('[data-view-image]');
+        if (imageTrigger) {
+          e.preventDefault();
+          const imgSrc = imageTrigger.getAttribute('data-view-image');
+          const title = imageTrigger.getAttribute('data-title');
+          const cat = imageTrigger.getAttribute('data-cat');
+          openImageViewer(imgSrc, title, cat);
+        }
+      }
+    });
+  }
+
+  // 5.1 Modal de Visualização de Projeto ao Vivo e Imagem Completa (com Botão de Voltar)
+  const projectViewerModal = document.getElementById('projectViewerModal');
+  const projectViewerBackdrop = document.getElementById('projectViewerBackdrop');
+  const projectViewerCloseBtn = document.getElementById('projectViewerCloseBtn');
+  const projectViewerFrame = document.getElementById('projectViewerFrame');
+  const projectViewerImageWrapper = document.getElementById('projectViewerImageWrapper');
+  const projectViewerImage = document.getElementById('projectViewerImage');
+  const projectViewerTitle = document.getElementById('projectViewerTitle');
+  const projectViewerBadge = document.getElementById('projectViewerBadge');
+  const projectViewerExtLink = document.getElementById('projectViewerExtLink');
+  const projectViewerLoader = document.getElementById('projectViewerLoader');
+
+  function openProjectViewer(url, title, category) {
+    if (!projectViewerModal || !projectViewerFrame) return;
+
+    projectViewerModal.classList.remove('mode-image');
+    if (projectViewerTitle) projectViewerTitle.textContent = title || 'Projeto';
+    if (projectViewerBadge) projectViewerBadge.textContent = category || 'Projeto';
+    if (projectViewerExtLink) projectViewerExtLink.href = url;
+    if (projectViewerLoader) projectViewerLoader.classList.remove('loaded');
+
+    projectViewerFrame.onload = () => {
+      if (projectViewerLoader) projectViewerLoader.classList.add('loaded');
+    };
+
+    projectViewerFrame.src = url;
+    projectViewerModal.classList.add('active');
+    projectViewerModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    try {
+      history.pushState({ projectViewerOpen: true }, '');
+    } catch (err) {}
+  }
+
+  function openImageViewer(imgSrc, title, category) {
+    if (!projectViewerModal || !projectViewerImage) return;
+
+    projectViewerModal.classList.add('mode-image');
+    if (projectViewerTitle) projectViewerTitle.textContent = title || 'Imagem';
+    if (projectViewerBadge) projectViewerBadge.textContent = category || 'Criativo';
+    if (projectViewerLoader) projectViewerLoader.classList.remove('loaded');
+
+    projectViewerImage.onload = () => {
+      if (projectViewerLoader) projectViewerLoader.classList.add('loaded');
+    };
+
+    projectViewerImage.src = imgSrc;
+    projectViewerImage.alt = `${title} - Imagem Completa`;
+
+    projectViewerModal.classList.add('active');
+    projectViewerModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    try {
+      history.pushState({ projectViewerOpen: true }, '');
+    } catch (err) {}
+  }
+
+  function closeProjectViewer(handleHistory = true) {
+    if (!projectViewerModal || !projectViewerModal.classList.contains('active')) return;
+
+    projectViewerModal.classList.remove('active');
+    projectViewerModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    setTimeout(() => {
+      projectViewerModal.classList.remove('mode-image');
+      if (projectViewerFrame) projectViewerFrame.src = 'about:blank';
+      if (projectViewerImage) projectViewerImage.src = '';
+      if (projectViewerLoader) projectViewerLoader.classList.remove('loaded');
+    }, 250);
+
+    if (handleHistory) {
+      try {
+        if (history.state && history.state.projectViewerOpen) {
+          history.back();
+        }
+      } catch (err) {}
+    }
+  }
+
+  if (projectViewerCloseBtn) {
+    projectViewerCloseBtn.addEventListener('click', () => closeProjectViewer(true));
+  }
+  if (projectViewerBackdrop) {
+    projectViewerBackdrop.addEventListener('click', () => closeProjectViewer(true));
+  }
+
+  // Tecla ESC para fechar
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && projectViewerModal && projectViewerModal.classList.contains('active')) {
+      closeProjectViewer(true);
+    }
+  });
+
+  // Gesto de voltar no celular (Android / iOS) fecha o modal e mantém o usuário no site
+  window.addEventListener('popstate', () => {
+    if (projectViewerModal && projectViewerModal.classList.contains('active')) {
+      closeProjectViewer(false);
+    }
   });
 
   // 6. Assistente Robô Espiando na Borda da Tela (Edge-Clinging Peeking Assistant)
@@ -443,10 +761,11 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'sobre', side: 'right' },
       { id: 'servicos', side: 'left' },
       { id: 'projetos', side: 'left' },
+      { id: 'portfolio', side: 'right' },
       { id: 'diferenciais', side: 'right' },
-      { id: 'como-trabalhamos', side: 'right' },
+      { id: 'como-trabalhamos', side: 'left' },
       { id: 'contato-cta', side: 'left' },
-      { id: 'faq', side: 'left' }
+      { id: 'faq', side: 'right' }
     ];
 
     let currentSide = 'right';
