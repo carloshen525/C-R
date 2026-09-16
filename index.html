@@ -117,11 +117,20 @@
         <div class="hero-content">
           <div class="section-badge">Foco em Crescimento e Vendas</div>
           <h1 class="hero-title">
-            Seu negócio precisa de mais <span class="highlight">clientes</span>, não apenas de mais seguidores.
+            Seu negócio merece mais <span class="highlight">clientes.</span>
           </h1>
           <p class="hero-description">
-            Criamos campanhas inteligentes no Meta Ads e Google Ads, desenvolvemos sites personalizados e cardápios digitais para ajudar empresas a venderem mais todos os dias.
+            Criamos soluções digitais para empresas que desejam crescer.
           </p>
+
+          <!-- Texto Dinâmico com Efeito de Digitação (Typewriter Effect) -->
+          <div class="hero-typewriter-box" aria-live="polite">
+            <span class="typewriter-prefix">Nós criamos:</span>
+            <span class="typewriter-wrapper">
+              <span class="typewriter-text" id="heroTypewriterText">Sites Personalizados</span><span class="typewriter-cursor" aria-hidden="true">|</span>
+            </span>
+          </div>
+
           <div class="hero-actions">
             <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+or%C3%A7amento+para+o+meu+neg%C3%B3cio." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
               <span>Solicitar orçamento</span>
@@ -132,8 +141,20 @@
           </div>
         </div>
 
-        <div class="hero-illustration" aria-hidden="true">
-          <img src="img/hero-illustration.svg" alt="Ilustração moderna com notebook, smartphone e gráficos de crescimento" width="720" height="540" fetchpriority="high">
+        <!-- Ilustração Sincronizada com o Serviço em Exibição -->
+        <div class="hero-illustration" id="heroIllustrationContainer" aria-hidden="true">
+          <div class="hero-slides-wrapper">
+            <!-- 1. Sites Personalizados -->
+            <img src="img/projeto-site.svg" alt="Sites Personalizados" class="hero-slide active" data-index="0" width="720" height="540" fetchpriority="high">
+            <!-- 2. Campanhas no Meta Ads -->
+            <img src="img/projeto-meta.svg" alt="Campanhas no Meta Ads" class="hero-slide" data-index="1" width="720" height="540" loading="lazy">
+            <!-- 3. Cardápios Digitais -->
+            <img src="img/projeto-cardapio.svg" alt="Cardápios Digitais" class="hero-slide" data-index="2" width="720" height="540" loading="lazy">
+            <!-- 4. Landing Pages -->
+            <img src="img/projeto-landing.svg" alt="Landing Pages" class="hero-slide" data-index="3" width="720" height="540" loading="lazy">
+            <!-- 5. Estratégias para vender mais -->
+            <img src="img/hero-illustration.svg" alt="Estratégias para vender mais" class="hero-slide" data-index="4" width="720" height="540" loading="lazy">
+          </div>
         </div>
       </div>
     </section>
@@ -179,7 +200,7 @@
     </section>
 
     <!-- ================= 3ª DOBRA: SEÇÃO SERVIÇOS ================= -->
-    <section class="section-spacing" id="servicos">
+    <section class="section-spacing has-abstract-bg" id="servicos">
       <div class="container">
         <div class="section-header">
           <div class="section-badge">O Que Fazemos</div>
@@ -285,66 +306,298 @@
           <p class="section-subtitle">Conheça alguns dos projetos desenvolvidos pela R&C Marketing, incluindo criação de sites, páginas de vendas, campanhas no Meta Ads e soluções digitais personalizadas para diferentes negócios.</p>
         </div>
 
-        <div class="projects-grid">
-          <!-- Card 1: Site Personalizado -->
-          <article class="project-card">
-            <div class="project-mockup-wrapper">
-              <img src="img/projeto-site.svg" alt="Mockup de Site Personalizado responsivo para desktop e celular" width="480" height="300" loading="lazy">
-            </div>
-            <div class="project-info">
-              <span class="project-badge">Desenvolvimento Web</span>
-              <h3 class="project-title">Site Personalizado</h3>
-              <p class="project-desc">
-                Sites responsivos criados para apresentar empresas de forma profissional e facilitar o contato com clientes.
-              </p>
-              <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+or%C3%A7amento+para+Site+Personalizado." target="_blank" rel="noopener noreferrer" class="project-cta-link" aria-label="Solicitar orçamento para Site Personalizado">
-                <span>Solicitar projeto como este</span>
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </article>
+        <!-- Acordeão de Projetos e Serviços por Categoria (Estilo Sanfona Abre e Fecha) -->
+        <div class="project-accordion-container" id="projectAccordion">
+          
+          <!-- Categoria 1: Sites Personalizados & Landing Pages -->
+          <div class="project-accordion-item active">
+            <button type="button" class="project-accordion-header" aria-expanded="true" aria-controls="proj-cat-1">
+              <div class="project-header-left">
+                <span class="project-cat-badge">
+                  <svg viewBox="0 0 24 24" class="cat-icon" aria-hidden="true">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="2" y1="20" x2="22" y2="20" />
+                    <line x1="8" y1="20" x2="8.5" y2="17" />
+                    <line x1="16" y1="20" x2="15.5" y2="17" />
+                  </svg>
+                  Desenvolvimento Web
+                </span>
+                <h3 class="project-accordion-title">Sites Personalizados & Páginas de Vendas</h3>
+                <span class="project-accordion-subtitle">Sites modernos, rápidos e pensados para transformar visitas em clientes</span>
+              </div>
+              <div class="project-header-action">
+                <span class="accordion-toggle-label">Fechar</span>
+                <span class="project-accordion-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </button>
 
-          <!-- Card 2: Campanhas Meta Ads -->
-          <article class="project-card">
-            <div class="project-mockup-wrapper">
-              <img src="img/projeto-meta.svg" alt="Mockup de Campanhas no Meta Ads para Facebook e Instagram" width="480" height="300" loading="lazy">
-            </div>
-            <div class="project-info">
-              <span class="project-badge">Tráfego Pago</span>
-              <h3 class="project-title">Campanhas Meta Ads</h3>
-              <p class="project-desc">
-                Estratégias e criativos desenvolvidos para divulgação de produtos e serviços no Facebook e Instagram.
-              </p>
-              <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+or%C3%A7amento+para+Campanhas+no+Meta+Ads." target="_blank" rel="noopener noreferrer" class="project-cta-link" aria-label="Solicitar orçamento para Meta Ads">
-                <span>Solicitar campanha como esta</span>
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </article>
+            <div class="project-accordion-body" id="proj-cat-1" role="region">
+              <div class="project-accordion-inner">
+                <div class="project-showcase">
+                  <div class="project-mockup-wrapper">
+                    <img src="img/projeto-site.svg" alt="Mockup de Site Personalizado responsivo para desktop e celular" width="480" height="300" loading="lazy">
+                  </div>
+                  <div class="project-showcase-info">
+                    <h4 class="project-showcase-title">O que entregamos nessa categoria</h4>
+                    <p class="project-showcase-desc">
+                      Sites institucionais e landing pages de alta conversão, projetados para transmitir máxima credibilidade e transformar visitantes em clientes qualificados para sua empresa.
+                    </p>
+                    
+                    <ul class="project-services-list">
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Design 100% responsivo para computador, tablet e celular</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Estrutura estratégica com foco em conversão e usabilidade</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Otimização para carregamento veloz e indexação no Google</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Botões de contato direto para o WhatsApp do seu negócio</span>
+                      </li>
+                    </ul>
 
-          <!-- Card 3: Cardápio Digital -->
-          <article class="project-card">
-            <div class="project-mockup-wrapper">
-              <img src="img/projeto-cardapio.svg" alt="Mockup de Cardápio Digital para celular" width="480" height="300" loading="lazy">
+                    <div class="project-showcase-actions">
+                      <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+or%C3%A7amento+para+Site+Personalizado." target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Solicitar orçamento para Site Personalizado">
+                        <svg class="btn-icon" viewBox="0 0 24 24" style="fill: currentColor;" aria-hidden="true">
+                          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                        <span>Solicitar projeto como este</span>
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="project-info">
-              <span class="project-badge">Solução Gastronômica</span>
-              <h3 class="project-title">Cardápio Digital</h3>
-              <p class="project-desc">
-                Cardápios digitais desenvolvidos para facilitar pedidos e melhorar a experiência dos clientes.
-              </p>
-              <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+or%C3%A7amento+para+Card%C3%A1pio+Digital." target="_blank" rel="noopener noreferrer" class="project-cta-link" aria-label="Solicitar orçamento para Cardápio Digital">
-                <span>Solicitar cardápio como este</span>
-                <span aria-hidden="true">→</span>
-              </a>
+          </div>
+
+          <!-- Categoria 2: Campanhas no Meta Ads -->
+          <div class="project-accordion-item">
+            <button type="button" class="project-accordion-header" aria-expanded="false" aria-controls="proj-cat-2">
+              <div class="project-header-left">
+                <span class="project-cat-badge">
+                  <svg viewBox="0 0 24 24" class="cat-icon" aria-hidden="true">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
+                  Tráfego Pago
+                </span>
+                <h3 class="project-accordion-title">Campanhas no Meta Ads (Facebook & Instagram)</h3>
+                <span class="project-accordion-subtitle">Anúncios estratégicos para atrair clientes prontos para comprar</span>
+              </div>
+              <div class="project-header-action">
+                <span class="accordion-toggle-label">Ver detalhes</span>
+                <span class="project-accordion-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </button>
+
+            <div class="project-accordion-body" id="proj-cat-2" role="region">
+              <div class="project-accordion-inner">
+                <div class="project-showcase">
+                  <div class="project-mockup-wrapper">
+                    <img src="img/projeto-meta.svg" alt="Mockup de Campanhas no Meta Ads para Facebook e Instagram" width="480" height="300" loading="lazy">
+                  </div>
+                  <div class="project-showcase-info">
+                    <h4 class="project-showcase-title">O que entregamos nessa categoria</h4>
+                    <p class="project-showcase-desc">
+                      Estratégias completas de tráfego pago no Instagram e Facebook, alcançando exatamente o público qualificado na sua cidade ou em todo o Brasil para impulsionar suas vendas.
+                    </p>
+                    
+                    <ul class="project-services-list">
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Segmentação personalizada do público ideal por região e interesse</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Criação de anúncios e criativos atraentes para Feed, Reels e Stories</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Campanhas focadas em gerar mensagens diretas no WhatsApp</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Acompanhamento contínuo e otimização do custo por contato</span>
+                      </li>
+                    </ul>
+
+                    <div class="project-showcase-actions">
+                      <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+or%C3%A7amento+para+Campanhas+no+Meta+Ads." target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Solicitar orçamento para Meta Ads">
+                        <svg class="btn-icon" viewBox="0 0 24 24" style="fill: currentColor;" aria-hidden="true">
+                          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                        <span>Solicitar campanha como esta</span>
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </article>
+          </div>
+
+          <!-- Categoria 3: Campanhas no Google Ads -->
+          <div class="project-accordion-item">
+            <button type="button" class="project-accordion-header" aria-expanded="false" aria-controls="proj-cat-3">
+              <div class="project-header-left">
+                <span class="project-cat-badge">
+                  <svg viewBox="0 0 24 24" class="cat-icon" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    <path d="M11 8v6M8 11h6" />
+                  </svg>
+                  Tráfego Pago
+                </span>
+                <h3 class="project-accordion-title">Campanhas no Google Ads (Busca & Maps)</h3>
+                <span class="project-accordion-subtitle">Apareça no topo do Google quando pesquisarem pelo seu serviço</span>
+              </div>
+              <div class="project-header-action">
+                <span class="accordion-toggle-label">Ver detalhes</span>
+                <span class="project-accordion-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </button>
+
+            <div class="project-accordion-body" id="proj-cat-3" role="region">
+              <div class="project-accordion-inner">
+                <div class="project-showcase">
+                  <div class="project-mockup-wrapper">
+                    <img src="img/projeto-google.svg" alt="Mockup de Campanhas no Google Ads no topo das pesquisas" width="480" height="300" loading="lazy">
+                  </div>
+                  <div class="project-showcase-info">
+                    <h4 class="project-showcase-title">O que entregamos nessa categoria</h4>
+                    <p class="project-showcase-desc">
+                      Posicionamos sua empresa em destaque na rede de pesquisa do Google e no Google Maps no instante exato em que potenciais clientes procuram por aquilo que você oferece.
+                    </p>
+                    
+                    <ul class="project-services-list">
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Anúncios nas primeiras posições para termos com alta intenção de compra</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Presença e destaque regional no Google Maps e Google Meu Negócio</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Extensões de chamada telefônica direta e direcionamento para WhatsApp</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Negativação de termos irrelevantes para economizar seu investimento</span>
+                      </li>
+                    </ul>
+
+                    <div class="project-showcase-actions">
+                      <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+or%C3%A7amento+para+Google+Ads." target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Solicitar orçamento para Google Ads">
+                        <svg class="btn-icon" viewBox="0 0 24 24" style="fill: currentColor;" aria-hidden="true">
+                          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                        <span>Solicitar campanha como esta</span>
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Categoria 4: Cardápio Digital Interativo -->
+          <div class="project-accordion-item">
+            <button type="button" class="project-accordion-header" aria-expanded="false" aria-controls="proj-cat-4">
+              <div class="project-header-left">
+                <span class="project-cat-badge">
+                  <svg viewBox="0 0 24 24" class="cat-icon" aria-hidden="true">
+                    <rect x="5" y="2" width="14" height="20" rx="3" />
+                    <line x1="9" y1="5" x2="15" y2="5" />
+                    <path d="M9 12h6c0-2-1.34-3-3-3s-3 1-3 3z" />
+                  </svg>
+                  Solução Gastronômica
+                </span>
+                <h3 class="project-accordion-title">Cardápio Digital para Restaurantes & Delivery</h3>
+                <span class="project-accordion-subtitle">Facilidade nos pedidos, visual atraente e economia sem comissões</span>
+              </div>
+              <div class="project-header-action">
+                <span class="accordion-toggle-label">Ver detalhes</span>
+                <span class="project-accordion-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </button>
+
+            <div class="project-accordion-body" id="proj-cat-4" role="region">
+              <div class="project-accordion-inner">
+                <div class="project-showcase">
+                  <div class="project-mockup-wrapper">
+                    <img src="img/projeto-cardapio.svg" alt="Mockup de Cardápio Digital interativo para celular" width="480" height="300" loading="lazy">
+                  </div>
+                  <div class="project-showcase-info">
+                    <h4 class="project-showcase-title">O que entregamos nessa categoria</h4>
+                    <p class="project-showcase-desc">
+                      Cardápios digitais intuitivos e velozes para lanchonetes, restaurantes, pizzarias e delivery, otimizando o fluxo de pedidos sem depender de taxas abusivas de terceiros.
+                    </p>
+                    
+                    <ul class="project-services-list">
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Acesso imediato via QR Code nas mesas ou link na biografia do Instagram</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Envio automatizado do pedido formatado direto para o WhatsApp</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Painel simples para atualizar preços, itens, adicionais e fotos</span>
+                      </li>
+                      <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>100% livre de comissões ou taxas por vendas realizadas</span>
+                      </li>
+                    </ul>
+
+                    <div class="project-showcase-actions">
+                      <a href="https://wa.me/553598754516?text=Ol%C3%A1%21+Gostaria+de+solicitar+um+or%C3%A7amento+para+Card%C3%A1pio+Digital." target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Solicitar orçamento para Cardápio Digital">
+                        <svg class="btn-icon" viewBox="0 0 24 24" style="fill: currentColor;" aria-hidden="true">
+                          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                        <span>Solicitar cardápio como este</span>
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
     <!-- ================= SEÇÃO DIFERENCIAIS ================= -->
-    <section class="section-spacing differentials-section">
+    <section class="section-spacing differentials-section has-abstract-bg" id="diferenciais">
       <div class="container">
         <div class="section-header">
           <div class="section-badge">Nossos Valores</div>
@@ -452,7 +705,7 @@
     </section>
 
     <!-- ================= CHAMADA PARA AÇÃO (CTA BANNER FUNDO AZUL) ================= -->
-    <section class="section-spacing cta-banner-section" aria-label="Chamada para Ação">
+    <section class="section-spacing cta-banner-section" id="contato-cta" aria-label="Chamada para Ação">
       <div class="container">
         <div class="cta-banner-card">
           <h2 class="cta-banner-title">Vamos conversar sobre o crescimento do seu negócio?</h2>
@@ -470,7 +723,7 @@
     </section>
 
     <!-- ================= SEÇÃO FAQ (PERGUNTAS FREQUENTES) ================= -->
-    <section class="section-spacing" id="faq">
+    <section class="section-spacing has-abstract-bg" id="faq">
       <div class="container">
         <div class="section-header">
           <div class="section-badge">Dúvidas Frequentes</div>
@@ -810,6 +1063,19 @@
       </svg>
     </button>
   </aside>
+
+  <!-- Zona de Fechamento ao Arrastar (Drag to Dismiss) -->
+  <div id="robotDropZone" class="robot-drop-zone" aria-hidden="true">
+    <div class="robot-drop-target">
+      <div class="robot-drop-circle">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </div>
+      <span class="robot-drop-label">Solte aqui para fechar</span>
+    </div>
+  </div>
 
   <!-- Script Principal Otimizado -->
   <script src="js/main.js" defer></script>
