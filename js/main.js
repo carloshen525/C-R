@@ -252,6 +252,13 @@ document.addEventListener('DOMContentLoaded', () => {
       linkTexto: "Ver Site"
     },
     {
+      titulo: "Fernanda Monteiro • Psicóloga Clínica",
+      categoria: "Site Institucional",
+      imagem: "img/projeto-psifernanda.png",
+      link: "https://psifernanda.vercel.app",
+      linkTexto: "Ver Site"
+    },
+    {
       titulo: "Exército Trader",
       categoria: "Landing Page",
       imagem: "img/projeto-exercito-trader.png",
@@ -265,24 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
       link: "https://lanchonete-du-bao.pedeskilo.com.br",
       linkTexto: "Ver Cardápio",
       openInNewTab: true
-    },
-    {
-      titulo: "Escola de Música",
-      categoria: "Meta Ads",
-      imagem: "img/projeto-meta-musica.png",
-      link: null // Criativo de anúncio sem link: abre no visualizador de imagem
-    },
-    {
-      titulo: "Floricultura Terra e Silva",
-      categoria: "Meta Ads",
-      imagem: "img/projeto-meta-floricultura.png",
-      link: null // Criativo de anúncio sem link: abre no visualizador de imagem
-    },
-    {
-      titulo: "Delivery de Macarrão",
-      categoria: "Meta Ads",
-      imagem: "img/projeto-meta-macarrao.png",
-      link: null // Criativo de anúncio sem link: abre no visualizador de imagem
     }
   ];
 
