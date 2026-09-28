@@ -825,9 +825,10 @@ button {
 
 .about-image-card img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: auto;
+  aspect-ratio: 1024 / 937;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center;
   border-radius: calc(var(--radius-xl) - 6px);
   display: block;
 }
@@ -1314,45 +1315,64 @@ button {
   margin-bottom: 0.75rem;
 }
 
-.portfolio-nav-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
 .portfolio-nav-btn {
-  width: 46px;
-  height: 46px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: rgba(18, 24, 38, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(14, 18, 27, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(10, 132, 255, 0.5);
   color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all var(--transition-fast);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 18px rgba(10, 132, 255, 0.4);
   user-select: none;
   -webkit-user-select: none;
+}
+
+.portfolio-nav-btn.prev {
+  left: -20px;
+}
+
+.portfolio-nav-btn.next {
+  right: -20px;
 }
 
 .portfolio-nav-btn:hover:not(:disabled) {
   background: var(--color-primary);
   border-color: var(--color-primary);
   color: #FFFFFF;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(10, 132, 255, 0.4);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 30px rgba(10, 132, 255, 0.65), 0 0 25px rgba(10, 132, 255, 0.5);
 }
 
 .portfolio-nav-btn:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(-50%) scale(0.95);
 }
 
 .portfolio-nav-btn:disabled {
-  opacity: 0.35;
+  opacity: 0.25;
   cursor: not-allowed;
   pointer-events: none;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 1200px) {
+  .portfolio-nav-btn.prev {
+    left: 8px;
+  }
+  .portfolio-nav-btn.next {
+    right: 8px;
+  }
 }
 
 .portfolio-carousel-wrapper {
@@ -1614,8 +1634,19 @@ button {
     margin-bottom: 1.75rem;
   }
 
-  .portfolio-nav-controls {
-    align-self: flex-end;
+  .portfolio-nav-btn {
+    width: 44px;
+    height: 44px;
+    background: rgba(11, 15, 23, 0.95);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.85), 0 0 14px rgba(10, 132, 255, 0.45);
+  }
+
+  .portfolio-nav-btn.prev {
+    left: 4px;
+  }
+
+  .portfolio-nav-btn.next {
+    right: 4px;
   }
 
   .portfolio-track {

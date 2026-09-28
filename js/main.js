@@ -259,6 +259,13 @@ document.addEventListener('DOMContentLoaded', () => {
       linkTexto: "Ver Site"
     },
     {
+      titulo: "Espaço Harmonia • Aulas de Música",
+      categoria: "Site Institucional",
+      imagem: "img/projeto-espaco-harmonia.png",
+      link: "https://www.espaco-harmonia.com/",
+      linkTexto: "Ver Site"
+    },
+    {
       titulo: "Exército Trader",
       categoria: "Landing Page",
       imagem: "img/projeto-exercito-trader.png",

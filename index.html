@@ -26,7 +26,7 @@
   <link rel="apple-touch-icon" href="img/favicon.png">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
 
   <!-- Schema.org JSON-LD para SEO -->
   <script type="application/ld+json">
@@ -160,7 +160,7 @@
         <!-- Lado Esquerdo: Imagem Profissional -->
         <div class="about-image">
           <div class="about-image-card">
-            <img src="img/equipe-cr-marketing.jpg" alt="Equipe e Fundadores da R&C Marketing" width="540" height="540" loading="lazy">
+            <img src="img/equipe-cr-marketing.jpg" alt="Equipe e Fundadores da R&C Marketing" width="1024" height="937" loading="lazy">
             <div class="about-image-badge">
               <span class="about-badge-dot"></span>
               <span>Fundadores &amp; Estrategistas</span>
@@ -599,24 +599,24 @@
             <h2 class="section-title">Projetos Desenvolvidos</h2>
             <p class="section-subtitle">Conheça alguns dos projetos desenvolvidos pela R&amp;C Marketing. Navegue pelo catálogo e veja exemplos reais de sites, campanhas e soluções criadas para nossos clientes.</p>
           </div>
-          <div class="portfolio-nav-controls" aria-label="Navegação do catálogo">
-            <button type="button" class="portfolio-nav-btn prev" id="portfolioPrev" aria-label="Projeto anterior">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <button type="button" class="portfolio-nav-btn next" id="portfolioNext" aria-label="Próximo projeto">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
-          </div>
         </div>
 
         <div class="portfolio-carousel-wrapper">
+          <button type="button" class="portfolio-nav-btn prev" id="portfolioPrev" aria-label="Projeto anterior">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
           <div class="portfolio-track" id="portfolioTrack" role="region" aria-label="Carrossel de projetos">
             <!-- Projetos injetados dinamicamente via JS a partir de lista facilmente configurável -->
           </div>
+
+          <button type="button" class="portfolio-nav-btn next" id="portfolioNext" aria-label="Próximo projeto">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
 
         <!-- Indicador sutil de arraste para mobile e desktop -->
@@ -1150,7 +1150,7 @@
   </div>
 
   <!-- Script Principal Otimizado -->
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=3" defer></script>
 </body>
 </html>
 
