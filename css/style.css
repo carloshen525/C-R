@@ -65,6 +65,8 @@ html {
   scroll-padding-top: 90px;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -73,6 +75,7 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -152,7 +155,7 @@ button {
 }
 
 /* Enquadramentos específicos para dinamismo sutil em cada seção alternada */
-#servicos.has-abstract-bg::before {
+#portfolio.has-abstract-bg::before {
   background-position: left center;
 }
 
@@ -657,29 +660,37 @@ button {
 }
 
 /* ==========================================================================
-   SEÇÃO SERVIÇOS
+   SEÇÃO O PROBLEMA
    ========================================================================== */
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(1.25rem, 2vw, 1.75rem);
+.problem-section {
+  position: relative;
+  background: var(--color-bg);
 }
 
-.service-card {
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.problem-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: clamp(2rem, 3vw, 2.5rem);
+  padding: clamp(1.5rem, 3vw, 2.35rem);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
   position: relative;
   overflow: hidden;
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
-.service-card::before {
+.problem-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -690,80 +701,236 @@ button {
   transition: background var(--transition-normal);
 }
 
-.service-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(10, 132, 255, 0.4);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+.problem-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(10, 132, 255, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(10, 132, 255, 0.1);
 }
 
-.service-card:hover::before {
-  background: linear-gradient(90deg, var(--color-primary), #389BFF);
+.problem-card:hover::before {
+  background: linear-gradient(90deg, var(--color-primary), #38D9FF);
 }
 
-.service-icon-wrapper {
-  width: 64px;
-  height: 64px;
+.problem-icon-wrapper {
+  width: 58px;
+  height: 58px;
   border-radius: var(--radius-md);
   background: rgba(10, 132, 255, 0.1);
   border: 1px solid rgba(10, 132, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.75rem;
-  transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
 }
 
-.service-card:hover .service-icon-wrapper {
-  background: rgba(10, 132, 255, 0.2);
+.problem-card:hover .problem-icon-wrapper {
+  background: rgba(10, 132, 255, 0.22);
   border-color: var(--color-primary);
-  box-shadow: 0 0 24px rgba(10, 132, 255, 0.35);
   transform: scale(1.06);
 }
 
-.service-icon-wrapper svg {
-  width: 32px;
-  height: 32px;
+.problem-icon-wrapper svg {
+  width: 28px;
+  height: 28px;
   stroke: var(--color-primary);
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
-  transition: stroke var(--transition-fast), transform var(--transition-fast);
+  transition: stroke var(--transition-fast);
 }
 
-.service-card:hover .service-icon-wrapper svg {
+.problem-card:hover .problem-icon-wrapper svg {
   stroke: #FFFFFF;
 }
 
-.service-title {
+.problem-title {
   font-size: var(--text-xl);
   font-weight: 700;
   color: #FFFFFF;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   line-height: 1.3;
 }
 
-.service-desc {
+.problem-desc {
   font-size: var(--text-base);
   color: var(--color-text-muted);
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  flex-grow: 1;
+  line-height: 1.65;
 }
 
-.service-cta {
-  display: inline-flex;
+.problem-highlight-card {
+  background: linear-gradient(135deg, rgba(16, 21, 28, 0.95), rgba(22, 28, 38, 0.95));
+  border: 1px solid rgba(10, 132, 255, 0.35);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: var(--color-primary);
-  font-weight: 600;
-  font-size: var(--text-sm);
-  transition: gap var(--transition-fast), color var(--transition-fast);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(10, 132, 255, 0.1);
 }
 
-.service-cta:hover {
-  color: #389BFF;
-  gap: 0.75rem;
+.problem-highlight-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(10, 132, 255, 0.15);
+  border: 1px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.problem-highlight-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--color-primary);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.problem-highlight-text {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.55;
+}
+
+.problem-highlight-text strong {
+  color: var(--color-primary);
+}
+
+
+/* ==========================================================================
+   SEÇÃO COMO AJUDAMOS SUA EMPRESA (BENEFÍCIOS)
+   ========================================================================== */
+
+.benefits-section {
+  position: relative;
+  background: var(--color-bg-alt);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.benefit-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.85rem, 3vw, 2.35rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  align-items: flex-start;
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  transition: background var(--transition-normal);
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(10, 132, 255, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(10, 132, 255, 0.12);
+}
+
+.benefit-card:hover::before {
+  background: linear-gradient(90deg, var(--color-primary), #38D9FF);
+}
+
+.benefit-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  background: rgba(10, 132, 255, 0.1);
+  border: 1px solid rgba(10, 132, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.benefit-card:hover .benefit-icon-wrapper {
+  background: rgba(10, 132, 255, 0.22);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(10, 132, 255, 0.35);
+  transform: scale(1.06);
+}
+
+.benefit-icon-wrapper svg {
+  width: 30px;
+  height: 30px;
+  stroke: var(--color-primary);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: stroke var(--transition-fast);
+}
+
+.benefit-card:hover .benefit-icon-wrapper svg {
+  stroke: #FFFFFF;
+}
+
+.benefit-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.benefit-title {
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+}
+
+.benefit-desc {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+.benefits-cta-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+  padding: clamp(2rem, 4vw, 3rem);
+  background: rgba(18, 23, 33, 0.6);
+  border: 1px dashed rgba(10, 132, 255, 0.35);
+  border-radius: var(--radius-lg);
+}
+
+.benefits-cta-box p {
+  font-size: var(--text-lg);
+  color: #FFFFFF;
+  font-weight: 600;
+  max-width: 600px;
 }
 
 /* ==========================================================================
@@ -2347,14 +2514,18 @@ button {
     margin-right: auto;
   }
 
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 720px;
-    margin: 0 auto;
+  .problem-grid {
+    grid-template-columns: 1fr;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .project-accordion-container {
-    max-width: 100%;
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .about-grid {
@@ -2404,8 +2575,15 @@ button {
     display: flex;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr;
+  .problem-highlight-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .benefit-card {
+    flex-direction: column;
+    gap: 1.15rem;
   }
 
   .differentials-grid {

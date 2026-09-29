@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typewriterText && heroSlides.length > 0) {
     const phrases = [
       'Sites Personalizados',
-      'Campanhas no Meta Ads',
-      'Cardápios Digitais',
-      'Landing Pages'
+      'Anúncios Online',
+      'Landing Pages',
+      'Presença Digital'
     ];
 
     let phraseIdx = 0;
@@ -146,41 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 2.1 Acordeão de Projetos e Serviços por Categoria (Abre e Fecha)
-  const projectAccordionItems = document.querySelectorAll('.project-accordion-item');
-
-  projectAccordionItems.forEach((item) => {
-    const headerBtn = item.querySelector('.project-accordion-header');
-    const toggleLabel = item.querySelector('.accordion-toggle-label');
-    if (!headerBtn) return;
-
-    headerBtn.addEventListener('click', () => {
-      const isAlreadyActive = item.classList.contains('active');
-
-      // Fecha os outros itens para manter o layout focado e organizado
-      projectAccordionItems.forEach((otherItem) => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
-          const otherBtn = otherItem.querySelector('.project-accordion-header');
-          const otherLabel = otherItem.querySelector('.accordion-toggle-label');
-          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
-          if (otherLabel) otherLabel.textContent = 'Ver detalhes';
-        }
-      });
-
-      // Alterna o item clicado (abre e fecha)
-      if (isAlreadyActive) {
-        item.classList.remove('active');
-        headerBtn.setAttribute('aria-expanded', 'false');
-        if (toggleLabel) toggleLabel.textContent = 'Ver detalhes';
-      } else {
-        item.classList.add('active');
-        headerBtn.setAttribute('aria-expanded', 'true');
-        if (toggleLabel) toggleLabel.textContent = 'Fechar';
-      }
-    });
-  });
-
   // 3. Efeito no Header ao Rolar a Página
   const siteHeader = document.querySelector('.site-header');
   function handleScroll() {
@@ -203,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
       threshold: 0.1
     };
 
-    const revealElements = document.querySelectorAll('.service-card, .about-image, .about-content, .project-accordion-item, .diff-card, .process-card, .faq-item');
+    const revealElements = document.querySelectorAll('.about-image, .about-content, .diff-card, .process-card, .faq-item');
     
     // Configura estilos iniciais para fade-in sutil
     revealElements.forEach(el => {
