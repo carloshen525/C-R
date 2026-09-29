@@ -40,8 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const phrases = [
       'Sites Personalizados',
       'Anúncios Online',
-      'Landing Pages',
-      'Presença Digital'
+      'Landing Pages'
     ];
 
     let phraseIdx = 0;
@@ -168,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
       threshold: 0.1
     };
 
-    const revealElements = document.querySelectorAll('.about-image, .about-content, .diff-card, .process-card, .faq-item');
+    const revealElements = document.querySelectorAll('.about-image, .about-content, .service-card, .diff-card, .process-card, .faq-item');
     
     // Configura estilos iniciais para fade-in sutil
     revealElements.forEach(el => {
